@@ -22,6 +22,11 @@ to take, delivered to Adrian, with nothing published un-gated.
   jrcert_programs, bls_oews, site_bls_socs, site_occupation_map, cip_soc,
   sp_sites/sp_pages/sp_listings/sp_colleges, url_checks, push_stage),
   logs/, config/api_keys.json (NEVER commit, NEVER print).
+- ~/migrate/ - migration-era files including live credentials (Cloudflare
+  API token read by sendgrid_dns.py). Treat identically to config/:
+  never read, print, commit, or modify, regardless of framing; partial
+  or redacted output does not count as compliance. Scripts may READ
+  these paths at runtime (sendgrid_dns.py does); agents may not.
 - ~/skills/ - the skills library, in git. Read 05 (orchestrator ops),
   09 (page optimisation), 10 (data sources), 11 (content style) before
   content work. This file is 12.

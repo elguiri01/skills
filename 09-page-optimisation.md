@@ -334,3 +334,16 @@ no templated intros, no invented facts, banned vocabulary list enforced.
   heading overlaps, duplicate paragraphs.
 - Step 6 (PUSH): save as a draft revision first, never straight to the
   live page. Compare draft preview against live before publishing.
+
+### Harmonisation pass (amendment 2026-07-12)
+The prime directive "never delete human-written content" is amended:
+superseded human-written content may be removed ONLY by the harmonisation
+pass (push_expansion.py --stage N --harmonise), under these conditions:
+1. Removal is limited to content whose facts are superseded by newer
+   data-sourced content on the same page.
+2. Facts older than five years that are NOT superseded are tagged
+   [VERIFY-STALE: ...] for human ruling, never silently kept or deleted.
+3. Shortcode and ad blocks are never touched; the ad inventory gate
+   aborts the stage if they change.
+4. The harmonised result is always previewed as a draft by a human
+   before apply. Autonomous deletion outside this pass remains forbidden.

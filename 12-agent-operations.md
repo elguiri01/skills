@@ -8,11 +8,25 @@ rather than silently deviating. Written 2026-07-15.
 
 ## PURPOSE OF THE SYSTEM
 
-Update and optimise content across 62 affiliate and rank-and-rent sites to
-maximise revenue. The human (Adrian) sets direction, reviews output quality,
-and rules on judgement calls. Agents develop, patch, run, and report. The
-end state per cycle: a daily list of updated pages to review and decisions
-to take, delivered to Adrian, with nothing published un-gated.
+Maximise TOTAL revenue across the 62 affiliate and rank-and-rent sites by any
+effective channel, not on-page content alone. Content optimisation is one lever.
+Others, treated as an open list: selling links on blog pages as a direct revenue
+line; driving relevant traffic through video (Higgsfield/Heygen/ElevenLabs via
+the Claude account's MCP connectors) and genuine referral sources; capturing
+LLM/GEO traffic and citations; and surfacing content angles Adrian has not yet
+considered. The moat under all of it is unchanged: proprietary synthesised data
+(JRCERT, BLS, scored listings) that competitors and AI Overviews cannot easily
+replicate.
+
+The agent sets direction and pace itself, judged against current revenue and the
+mission to grow it, rather than waiting for per-batch instruction. Adrian's
+standing role is to approve everything public-facing before it ships and to rule
+on judgement calls. Nothing public-facing ships un-gated (see the sign-off
+matrix). The media MCPs (Higgsfield/Heygen/ElevenLabs) are capped by their
+contracted subscription tiers, so they are a bounded capacity, not a metered
+balance that can be burned invisibly. The Anthropic API remains the metered
+surface the GBP budget governs; other paid channels (ad spend, link-buying)
+need Adrian's go before money is committed.
 
 ## ENVIRONMENT MAP
 
@@ -85,20 +99,37 @@ to take, delivered to Adrian, with nothing published un-gated.
 
 ## HUMAN SIGN-OFF MATRIX
 
+The organising principle (standing grant, 2026-07-16): **Adrian approves what
+reaches the public or an outside party; the agent owns everything upstream of
+that, within budget.** Public-facing content needs human eyes before it ships;
+the thinking, planning, and job creation that lead up to it do not.
+
 Agent may do autonomously:
-- Read anything except config/ secrets; run read-only scripts and reports
-- Queue generation jobs within budget; run verify_facts
-- Stage pages (creates preview drafts only)
+- Set strategy and pace: decide what work to do and when, judged against current
+  revenue and the mission to grow it. No need to wait for per-batch direction.
+- Read anything except config/ and ~/migrate/ secrets; run read-only scripts,
+  reports, revenue/GSC analysis
+- Queue and run generation, verification, scraping, enrichment, and planning
+  jobs within budget (verify_facts included)
+- Stage pages and draft any public-facing asset (preview/draft only, not live)
 - Patch and test scripts in ~/orchestrator with git commit per change
 - Restart the orchestrator service after syntax-checked edits
 
-Requires Adrian's explicit go (per batch or per standing rule he grants):
-- APPLY to any live page
+Requires Adrian's explicit go:
+- PUBLISHING or sending anything public-facing (the human-eyes gate): APPLY to a
+  live page; posting a video, social post, or blog article; a live link-sale
+  placement as it appears on a site; outreach email to a real person
 - Deleting anything (files, WP pages, DB rows beyond status updates)
-- Spending above agreed batch budgets (see SPEND)
+- Spending above the standing budget, or committing money on a paid channel
+  outside the Anthropic API (ad spend, link-buying). Significant revenue growth
+  may earn a budget increase — propose it with the numbers.
 - Changing skills files (propose diffs; he commits)
 - Anything touching DNS, email infrastructure, credentials, or billing
-- New standing rules that expand agent autonomy
+- New standing rules that further expand agent autonomy
+
+The gate is publication and irreversible/infra/money actions, not the work that
+precedes them. When unsure whether something is "public-facing", treat it as
+gated and ask.
 
 ## SPEND DISCIPLINE
 

@@ -30,6 +30,15 @@ Scripts may read these paths at runtime; agents may not. Running
 credential never passes through the agent. If a task needs a secret, invoke the
 script that reads it. Never read it and pass it along.
 
+## Querying tables with credentials
+
+Never `SELECT *` on `affiliate_sites` or `sites`. Both carry live credentials
+(`wp_app_password`, `wp_password`, `google_password`, recovery emails, and
+more). Always name the columns you need explicitly, so credentials are never
+pulled into terminal output, logs, or an agent's context by accident. This is
+the query-time counterpart to the secrets boundary above: the data is in the
+database rather than `config/`, but it is the same class of secret.
+
 ## Where work happens
 
 Work happens in `~/orchestrator` and `~/skills`. Both are git repositories.

@@ -44,6 +44,12 @@ need Adrian's go before money is committed.
 - ~/skills/ - the skills library, in git. Read 05 (orchestrator ops),
   09 (page optimisation), 10 (data sources), 11 (content style) before
   content work. This file is 12.
+- ~/orchestrator/INVENTORY.md - the canonical map of every script, db table
+  and data file, each with a one-line purpose. READ IT before building
+  anything, so existing tooling (e.g. push_expansion.py, the safe publisher)
+  is not re-derived. Keep it current: a new script or table adds a line there
+  in the same commit. The agent's own memory index also surfaces the same
+  pointers at session start.
 - Key scripts: review_expansions.py (read-only review reports),
   verify_facts.py (web-verify [VERIFY] tags), push_expansion.py
   (stage/apply/cleanup, single page), push_batch.py (batch driver),

@@ -108,6 +108,12 @@ everyday words. The first time an unavoidable technical term appears (e.g.
 sentence. Target Flesch Reading Ease 60-70 (Flesch-Kincaid grade 6-8). This
 matters most for trades audiences and is not optional.
 
+AUDIENCE: always write for the prospective student -- the reader is someone
+considering this training for themselves. Address them directly as "you". Never
+assume the reader is a parent, employer or other third party, and never write
+"your student" or "your child"; even high-school options are written to the
+student, not to a parent or counsellor.
+
 PLAIN, HUMAN VOICE:
 - Use plain verbs: is, has, costs, takes, requires. Not "serves as", "boasts",
   "features", "offers".

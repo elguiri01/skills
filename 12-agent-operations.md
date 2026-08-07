@@ -129,7 +129,7 @@ Requires Adrian's explicit go:
 - Deleting anything (files, WP pages, DB rows beyond status updates)
 - Spending above the standing budget, or committing money on a paid channel
   outside the Anthropic API (ad spend, link-buying). Significant revenue growth
-  may earn a budget increase — propose it with the numbers.
+  may earn a budget increase. Propose it with the numbers.
 - Changing skills files (propose diffs; he commits)
 - Anything touching DNS, email infrastructure, credentials, or billing
 - New standing rules that further expand agent autonomy

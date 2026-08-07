@@ -66,6 +66,12 @@ mixed signals — keep it clean.
 
 ## 3. Core Web Vitals
 
+> **Amended 2026-08-06:** lab measurement is no longer a **[UI]** job. Skill 18
+> (Page Performance) owns an automated loop — `perf_audit.py` measures real
+> LCP/FCP/CLS in headless Chromium for every site, weekly, and diagnoses the
+> cause. Field data below is still **[UI]**. Read Skill 18 before doing any
+> speed work; §3–§4 here remain the definition of the metrics.
+
 Google uses field data (real Chrome users) for the three CWV metrics. **[UI]**
 Read them in Search Console → Core Web Vitals, or per-URL in PageSpeed Insights
 (pagespeed.web.dev). Thresholds ("good"):
@@ -97,6 +103,11 @@ ranking signal itself — field CWV is. Use lab tools to find *causes*:
 
 Do not chase a 100/100 score. Get CWV into "good" and stop; beyond that the
 effort is better spent on content and links.
+
+The most common *cause* on this stack is not weight but discovery order: a
+GeneratePress hero background image is invisible to the browser's preload
+scanner, so it downloads last. Skill 18 covers the diagnosis and the one-line
+fix (`lcp_preload.py`).
 
 ## 5. Structured data (schema)
 
@@ -218,6 +229,7 @@ gated, Skill 12).
 ## Related skills
 
 - Skill 09 — Page Optimisation (content-side ranking work)
+- Skill 18 — Page Performance (the automated CWV audit and the LCP fix playbook)
 - Skill 13 — System Architecture (`gsc_pages`, `url_checks`, `sp_pages`)
 - Skill 14 — GSC Credentials (get the data flowing first)
 - Skill 16 — Persona E-E-A-T (the author entity behind Article schema)

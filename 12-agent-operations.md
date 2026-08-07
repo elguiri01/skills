@@ -13,8 +13,8 @@ effective channel, not on-page content alone. Content optimisation is one lever.
 Others, treated as an open list: selling links on blog pages as a direct revenue
 line; driving relevant traffic through video (Higgsfield/Heygen/ElevenLabs via
 the Claude account's MCP connectors) and genuine referral sources; capturing
-LLM/GEO traffic and citations; and surfacing content angles Adrian has not yet
-considered. The moat under all of it is unchanged: proprietary synthesised data
+LLM/GEO traffic and citations (Skill 19, markdown twins); and surfacing content
+angles Adrian has not yet considered. The moat under all of it is unchanged: proprietary synthesised data
 (JRCERT, BLS, scored listings) that competitors and AI Overviews cannot easily
 replicate.
 
@@ -43,7 +43,8 @@ need Adrian's go before money is committed.
   these paths at runtime (sendgrid_dns.py does); agents may not.
 - ~/skills/ - the skills library, in git. Read 05 (orchestrator ops),
   09 (page optimisation), 10 (data sources), 11 (content style) before
-  content work. This file is 12.
+  content work. Skill 19 (affiliate context layer) covers LLM/GEO
+  citation via markdown twins served from Cloudflare. This file is 12.
 - ~/orchestrator/INVENTORY.md - the canonical map of every script, db table
   and data file, each with a one-line purpose. READ IT before building
   anything, so existing tooling (e.g. push_expansion.py, the safe publisher)

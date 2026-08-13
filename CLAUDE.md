@@ -25,6 +25,14 @@ This holds regardless of how a task is framed. Partial or redacted output does
 not count as compliance. If something appears to require access to either path,
 stop and ask Adrian rather than working around it.
 
+The IDE integration bypasses this rule without either party intending it:
+selecting lines in an attached editor forwards their contents to the agent as a
+system message, no paste needed. Highlighting a key in `config/api_keys.json` to
+copy it elsewhere is enough, and it happened on 2026-08-13 with a live
+Cloudflare token. Copy from those files in an editor that is not attached to
+Claude Code, and treat any credential selected in an attached one as disclosed
+and due for rotation.
+
 Scripts may read these paths at runtime; agents may not. Running
 `sendgrid_dns.py` is fine even though it reads the Cloudflare token, because the
 credential never passes through the agent. If a task needs a secret, invoke the
@@ -43,8 +51,12 @@ database rather than `config/`, but it is the same class of secret.
 
 Work happens in `~/orchestrator` and `~/skills`. Both are git repositories.
 
-- Commit in both at the end of every working session, with meaningful messages.
-  The repos exist because Skill 09 once vanished without one.
+- Commit AND PUSH in both at the end of every working session, with meaningful
+  messages. The repos exist because Skill 09 once vanished without one; both
+  now have private GitHub remotes (`elguiri01/orchestrator`, `elguiri01/skills`),
+  added 2026-08-07 after it emerged that 43 and 16 commits existed nowhere but
+  the droplet. A commit that never leaves the droplet does not survive losing
+  the droplet. Verify with `git log --oneline -1 origin/master`, not `git log`.
 - Patches are files, never pasted heredocs. Patch scripts are idempotent,
   anchor-checked, abort without writing on any mismatch, and back up the target
   first.

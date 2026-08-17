@@ -32,6 +32,9 @@ that apply across all of them.
 - `agent-resilience/` — three-tier fallback (silent default / skip+flag / ask a
   human) plus a mandatory run summary. Required in every autonomous script.
   Wired into `autopilot.py`; it caught a parser fault on its first run.
+- `agent-ready-audit/` — Lighthouse Agentic Browsing: can an AI agent parse and
+  act on the page. See the section below; it corrects three widely repeated
+  myths, including that llms.txt is required.
 - `seo-strategist-agent/` — the strategy layer above content and links. Its
   `methodology.md` is the important half.
 
@@ -69,6 +72,42 @@ report and corrosive for our own. Every real finding this month came from
 looking at what was bad: the control group that turned a +707% into seasonality,
 the rolling-window bug that had impressions 28x too high, the guard reverting
 healthy zones. Internal reporting shows the bad number first.
+
+### agent-ready-audit
+
+Chrome's Lighthouse "Agentic Browsing" category: can an AI agent actually parse
+and act on the page. Directly relevant to the GEO work, since automechanicschools
+shows AI Visibility 0 and 8 of 8 sampled queries return an AI Overview.
+
+Three corrections it makes, all of which contradict the popular advice:
+
+1. **It is a checklist, not a grade.** A fraction of checks passed, deliberately
+   not a weighted score. Some renderers print a number anyway. Ignore it, and
+   never invent one in a report.
+2. **Only two checks carry weight**: `agent-accessibility-tree` and
+   `cumulative-layout-shift`. WebMCP and llms.txt usually read "Not applicable"
+   rather than failing, so a site with neither can still pass cleanly.
+3. **llms.txt is not required to pass and is not a ranking factor.** Its check
+   only grades the file's quality if the file already exists. Recommend it as a
+   cheap addition, never as a fix for a failing audit.
+
+Fix order matters more than coverage: accessible names first (an unnamed control
+is invisible to an agent, so it cannot act at all), then layout stability (the
+agent can see the page but elements move between locating and clicking), then
+llms.txt, then WebMCP. Points 1 and 2 are the same work as fixing the site for
+screen reader users, which is a much easier thing to justify.
+
+**Our measured position, 2026-08-17.** The bundled Lighthouse runner needs Chrome
+and npx; this droplet has node v18 and neither, so `agent_ready.py` implements
+the fallback the skill itself describes — static accessibility-tree checks. It
+does NOT cover CLS, which needs a real render, and says so rather than pretending.
+
+Across the top ten sites: 0 div-with-click-handler, 0 images without alt, and
+only 0-3 unnamed controls each. Three patterns account for nearly all of it:
+the header and footer logo links, unlabelled `<select>` dropdowns, and one
+hamburger toggle on floraldesignclasses. That is a theme-level fix of an hour or
+two, not a project. llms.txt is present and passing on 9 of 10 (AIOSEO generates
+it); automechanicschools is the exception at 404.
 
 ### approval-gate vs Skill 12
 

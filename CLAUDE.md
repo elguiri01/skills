@@ -35,6 +35,60 @@ that apply across all of them.
 - `seo-strategist-agent/` — the strategy layer above content and links. Its
   `methodology.md` is the important half.
 
+### The Stewart Vickers set ("SEO agency in a box")
+
+Written for an agency with clients. We have no clients, so read them for the
+patterns rather than the workflows. Four earn their place immediately, the rest
+are on the shelf.
+
+- `approval-gate/` — see the note below; it upgrades what Skill 12 already says.
+- `multi-llm-router/` — route each task to the cheapest model that can do it.
+  Its `router.js` carries a routing table. The saving for us is not titles
+  (already $0.0001 on haiku) but `content_expansion` at $0.1198 a job, where
+  DeepSeek-reasoner is roughly a tenth of Sonnet for long-form. `qwen3:4b` is
+  installed locally and free for classification and scoring.
+- `listicle-agent/` — the answer to our AI Visibility 0. Query the AI engines
+  for a target term, find which brands they already cite, then write the piece
+  that includes that real consensus. Do NOT invent citations or force our brand
+  above where it honestly sits; the method works because the consensus is real.
+- `publisher-crm/`, `inventory-database/`, `link-builder-agent/` — the link
+  stack. Relevant because automechanicschools needs citations, not words. Note
+  the compliance line these carry and keep it: any compensated placement gets
+  `rel="sponsored"` or `rel="nofollow"`. Earned editorial coverage is the only
+  kind that moves rankings, and it is the only kind worth chasing.
+- `cfo-agent/` — a formula-not-vibes spend rule (margin under 25% forces a cut
+  before any human sees the number). `autopilot.py` has a hard $60 cap but no
+  link between spend and return; this is the shape that fix should take.
+- `gp-writer-agent/`, `client-reporting-agent/`, `client-wins-agent/`,
+  `firefighter-agent/`, `lead-intel-suite/` — client-facing agency machinery.
+  Shelved until there are clients.
+
+**One pattern to refuse.** `client-reporting-agent` specifies "smart display
+logic — hide what's bad, lead with what's good". That is defensible for a client
+report and corrosive for our own. Every real finding this month came from
+looking at what was bad: the control group that turned a +707% into seasonality,
+the rolling-window bug that had impressions 28x too high, the guard reverting
+healthy zones. Internal reporting shows the bad number first.
+
+### approval-gate vs Skill 12
+
+They agree. Skill 12 defines WHO signs off; approval-gate defines HOW the queue
+works. `review_sheet.py` is already an implementation of it. Four things
+approval-gate has that we do not:
+
+1. **A timeout.** Items with no response in 24h escalate or auto-close. Our
+   sheet has 52 rows awaiting a decision with no expiry, so "pending" and
+   "abandoned" are indistinguishable.
+2. **Batch approval.** One approval covers a class of similar actions rather
+   than one row each. Fifty near-identical state pages should be one decision.
+3. **A fallback approver**, so nothing sits forever when Adrian is away.
+4. **Confidence thresholds instead of blocking** for high-volume routine work —
+   auto-execute above 0.9, queue below 0.7. Worth considering for meta and title
+   rewrites, never for published page content.
+
+The publication gate in Skill 12 stands unchanged: nothing reaches a live site
+without Adrian. These are refinements to the queue, not to the gate.
+
 ### What the strategist skill changes about how we pick work
 
 Three rules worth applying beyond that skill, because our own data agrees:

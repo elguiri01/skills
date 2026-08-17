@@ -1,0 +1,63 @@
+---
+name: local-seo-agent
+description: Local SEO automation — Google Business Profile health checks, Localo heat-map runs, geogrid tracking, citation audits. Runs during US business hours (not overnight — local SEO heuristics flag off-hours bot activity).
+---
+
+# local-seo-agent
+
+Local SEO is finicky. Google Business Profile, citation building, geogrid tracking, review management — each has its own tool and cadence. This agent ties them into one autonomous run.
+
+## What it does
+
+1. **GBP health check.** Pulls profile state (info accuracy, photo count, recent posts, Q&A, review velocity) via the official Google Business Profile API. NOT via Chrome automation of the GBP UI — Google's ToS prohibits automated UI access.
+2. **Heat-map / geogrid run.** Triggers your geogrid tool (Localo, Local Falcon, etc.) via their official APIs.
+3. **Citation audit.** Checks NAP consistency across citation sources you have official API access to (Yext, BrightLocal, etc.) or licensed data providers. Don't scrape citation sites that prohibit automation.
+4. **Review monitoring.** Flags new reviews (5★, 1★, content needing response) via the GBP API reviews endpoint.
+5. **Posts to your team channel.** Per-client snapshot — wins, risks, action items.
+
+## Why it works
+
+Local SEO has more moving parts than national. Without an aggregator, account managers track 5 tools per client. This compresses to one report per client.
+
+## Important: timing
+
+Run during US business hours (or your client's business hours). Local SEO tools — and Google itself — apply different heuristics overnight. Heat-map runs at 3am can artificially depress visibility scores because real users aren't searching at that time. Schedule for ~3pm GMT (mid-day US Eastern) for US-targeted clients.
+
+## What you provide
+
+- Google Business Profile API access (OAuth flow, business locations linked).
+- Geogrid tool API (Localo, Local Falcon, GeoRanker).
+- Citation source list per client (with API access where available).
+- Team channel.
+
+## Architectural considerations
+
+- **NAP consistency is binary.** Either all citations match or they don't. Don't grade — flag the mismatches.
+- **Review responses need humans.** The agent flags; humans respond. Auto-responding to negative reviews is a guaranteed PR fire.
+- **Geogrids cost.** Each geogrid run is real money. Cap to weekly per client unless something's actively changing.
+- **Photos matter more than people think.** GBP profiles with fresh photos this month outrank those that haven't been touched in 6 months. Track photo recency.
+
+## What this skill does NOT include
+
+- Auto-responding to reviews.
+- Auto-modifying GBP (high-risk; humans only).
+- Citation building scripts that hit non-public APIs (many violate ToS).
+
+## Setup
+
+### 1. Wire your geogrid tool
+### 2. Wire GBP API
+### 3. Per-client citation source list
+### 4. Schedule for client business hours
+
+## Companion skills
+
+- `client-reporting-agent` — feeds local data into weekly reports.
+- `agent-resilience` — required.
+
+## Install
+
+1. Drop this folder under `~/.claude/skills/local-seo-agent/`.
+2. Wire APIs + per-client lists.
+3. Schedule for US business hours.
+

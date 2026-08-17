@@ -12,6 +12,46 @@ Skill 12 points to the other skills to read before content work: 05
 (orchestrator ops), 09 (page optimisation), 10 (data sources), 11 (content
 style).
 
+## The skills index
+
+Numbered skills are portfolio operations. Named directories are agent patterns
+that apply across all of them.
+
+- `01` new site build, `02` directory submission, `03` competitor analysis
+- `05` orchestrator ops, `06` E-E-A-T authority, `07` school listings data
+- `08` video production, `09` page optimisation, `10` accreditation sources
+- `11` content style, `12` agent operations (the constitution), `13` architecture
+- `14` GSC credentials, `15` technical SEO, `16` persona authority
+- `17` GA4 credentials, `18` page performance, `19` affiliate context layer
+- `20` one-page site builder — EMD micro-sites, Cloudflare Pages deploy.
+  Read the compliance note first: it is for sites we genuinely operate, not
+  link networks.
+- `21` local SEO agent — GBP health, geogrids, citations. Official APIs only;
+  it explicitly refuses Chrome automation of the GBP UI, which breaches ToS.
+  Runs in US business hours because off-hours geogrids depress scores.
+- `agent-resilience/` — three-tier fallback (silent default / skip+flag / ask a
+  human) plus a mandatory run summary. Required in every autonomous script.
+  Wired into `autopilot.py`; it caught a parser fault on its first run.
+- `seo-strategist-agent/` — the strategy layer above content and links. Its
+  `methodology.md` is the important half.
+
+### What the strategist skill changes about how we pick work
+
+Three rules worth applying beyond that skill, because our own data agrees:
+
+1. **Never rank by Keyword Difficulty.** Use the lowest-DR site in the top 5 —
+   the actual bar to clear. KD is a synthetic score.
+2. **Filter for buyer intent, not volume.** This is the same lesson
+   `opportunity_rank.py` already learned the expensive way: scmedu.org has
+   220k impressions and earns 29 clicks a month.
+3. **Anchor distribution is audited, never engineered.** Flag exact-match above
+   30% as a risk to investigate. Do not buy placements to shape it — that is a
+   link scheme, and compensated links get `rel="sponsored"` regardless.
+
+The skill assumes Ahrefs. We do not have it; DataForSEO gives the same inputs
+(SERP results, domain rank via the Backlinks API, CPC) at roughly $0.0006 a
+query, so the methodology transfers even though the tool does not.
+
 ## Off limits
 
 Never read, print, or modify anything under:

@@ -1,0 +1,87 @@
+---
+name: one-page-site-builder
+description: Spin up an exact-match-domain (EMD) one-page site end-to-end — copy, hero image, schema, deploy. Use for legitimate affiliate review pages, lead-gen landers, niche micro-sites, or restoring an aged domain you've acquired. Tied to your CDN of choice (Cloudflare Pages recommended).
+---
+
+# one-page-site-builder
+
+For legitimate affiliate / lead-gen / niche site builds, the friction is post-research: you have the domain and the keyword, now you need to ship a one-page site. Manually that's an hour each — copy, hero image, schema markup, OG tags, deploy. This agent does it in minutes.
+
+## Compliance up front
+
+Use this for sites you genuinely operate as your own. Don't use it to build link networks designed to manipulate Google rankings — that's a search-engine guideline violation regardless of the tooling. If you're acquiring an aged domain, do real due diligence on its history (Wayback, Ahrefs anchor profile, prior penalties) and use it for a real project, not as a link source. The skill provides infrastructure; the use case is yours to keep on the right side of search-engine guidelines.
+
+## What it does
+
+1. Reads a job spec: domain, target keyword, niche, intent (affiliate / lead-gen / informational).
+2. Drafts page copy via DeepSeek (cheap long-form) following an editorial brief.
+3. Generates hero image via OpenAI gpt-image-1 or DALL-E.
+4. Generates schema.org markup, OG tags, basic meta.
+5. Writes static HTML.
+6. Deploys to Cloudflare Pages (or your CDN of choice).
+7. Updates DNS at your registrar.
+8. Logs the deployment to your inventory.
+
+## Why it works
+
+The bottleneck on niche site builds is logistics, not creative. Compressing the deploy step from an hour to ten minutes lets you ship 50 sites in a week instead of 5.
+
+## What you provide
+
+- Cloudflare account + API token (or alternative CDN).
+- Registrar API for DNS (Namecheap, Cloudflare Registrar).
+- DeepSeek + OpenAI API keys.
+- Page template HTML.
+- Niche-specific copy guides.
+
+## Optimisations vs. one-shot prompts
+
+- **DeepSeek for copy.** Long-form prose at ~10x lower cost than Sonnet. Quality is fine for one-page sites.
+- **gpt-image-1 for hero.** Renders text well, follows brief reliably.
+- **Direct deploy via Wrangler.** Cloudflare Pages via Wrangler API — faster and more reliable than wrangler CLI in CI.
+- **Schema generated programmatically.** Not via LLM. Deterministic, valid, faster.
+- **Job-spec orchestrator.** One JSON file per build, append-only log. Reproducible, debuggable.
+
+## Architectural considerations
+
+- **EMD without quality is junk.** Without good copy, schema, internal links, an EMD ranks for nothing. Don't think of this as "deploy the domain" — think of it as "minimum viable money page."
+- **Watch for AI-content detection.** Search engines are increasingly down-ranking obviously AI-generated content. Your prompt + your post-processing matter.
+- **Schema markup is high-leverage.** A correct LocalBusiness, Product, or Article schema gets you rich results. Worth building in.
+- **Don't deploy junk to a fresh domain.** First impressions matter — Google indexes the first version, and that becomes the baseline trust signal.
+- **Hero images cost.** Each gpt-image-1 generation has a per-image cost ([see OpenAI pricing](https://openai.com/api/pricing)). At scale this adds up — cache aggressively, reuse where avatar is similar.
+
+## What this skill does NOT include
+
+- Pre-built page templates (you provide).
+- Niche-specific copy strategies (you provide).
+- Domain purchasing — that's `domain-finder-agent` or manual.
+- Anything that violates a search engine's webmaster guidelines (cloaking, sneaky redirects, link-scheme manipulation).
+- Token handling guidance — store all CDN/registrar/API keys in environment variables or a secrets manager; use least-privilege scopes; never log them.
+
+## Setup
+
+### 1. Cloudflare API token
+For Pages + DNS.
+### 2. Registrar API
+For DNS at your registrar of choice.
+### 3. DeepSeek + OpenAI keys
+### 4. Page template
+HTML with `{{TOKEN}}` placeholders for hero, copy, schema, etc.
+### 5. Niche guides
+Markdown files per niche with voice + structure rules.
+### 6. Job spec format
+One JSON per build. Schema in `job-spec-schema.json`.
+
+## Companion skills
+
+- `deepseek-writer` — page copy.
+- `domain-finder-agent` — feeds candidates.
+- `pbn-hunter-agent` — for aged-domain restoration plays.
+
+## Install
+
+1. Drop this folder under `~/.claude/skills/one-page-site-builder/`.
+2. Wire APIs + template.
+3. Run a test build on a throwaway domain.
+4. Manually QC the output (copy quality, schema validity, page speed) before scaling.
+

@@ -107,9 +107,15 @@ installed.
 
 The static heuristic is kept behind `--static` and flagged as overcounting,
 because it does: on lisclare.com it reported 335 interactive and 18 unnamed
-where the real tree is 46 and 2. A collapsed mega-menu is `ignored` in the tree,
-and Elementor tab controls get names at runtime. Treat any static figure as an
-upper bound only.
+where the real tree is 46 and 2. Two separate causes, and the first is easy to
+state wrongly. Non-rendered markup mostly never ENTERS the accessibility tree at
+all, rather than entering it flagged `ignored`: that page hides 268 of its 305
+anchors behind `display:none` (the collapsed mega-menu) yet returns only 57
+`notRendered` records. The second cause was our own bug, since fixed: an
+accessible name comes from an element's whole subtree, and the parser attributed
+text only to the innermost control, so Elementor's `<button><span><a>Adult
+Beds</a></span></button>` left the button looking unnamed. It never was. That
+fix took 18 down to 7. Treat any static figure as an upper bound only.
 
 Measured with the real tree: 0-2 unnamed controls per site, and two sites at
 zero. Nearly all of it is unlabelled `<select>` dropdowns surfacing as unnamed

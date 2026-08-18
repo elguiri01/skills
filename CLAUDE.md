@@ -97,17 +97,26 @@ agent can see the page but elements move between locating and clicking), then
 llms.txt, then WebMCP. Points 1 and 2 are the same work as fixing the site for
 screen reader users, which is a much easier thing to justify.
 
-**Our measured position, 2026-08-17.** The bundled Lighthouse runner needs Chrome
-and npx; this droplet has node v18 and neither, so `agent_ready.py` implements
-the fallback the skill itself describes — static accessibility-tree checks. It
-does NOT cover CLS, which needs a real render, and says so rather than pretending.
+**Our measured position, 2026-08-18.** Chrome IS on this droplet, bundled by
+Playwright (Chrome for Testing 148), which is what `perf_audit.py` renders with.
+Only npm is missing, and apt would pull 449 packages for it. So `agent_ready.py`
+skips Lighthouse and reads the same tree Lighthouse reads, straight from Chrome
+over CDP (`Accessibility.getFullAXTree`), and joins CLS from `perf_audits`
+rather than re-measuring. Both weighted checks are covered with nothing
+installed.
 
-Across the top ten sites: 0 div-with-click-handler, 0 images without alt, and
-only 0-3 unnamed controls each. Three patterns account for nearly all of it:
-the header and footer logo links, unlabelled `<select>` dropdowns, and one
-hamburger toggle on floraldesignclasses. That is a theme-level fix of an hour or
-two, not a project. llms.txt is present and passing on 9 of 10 (AIOSEO generates
-it); automechanicschools is the exception at 404.
+The static heuristic is kept behind `--static` and flagged as overcounting,
+because it does: on lisclare.com it reported 335 interactive and 18 unnamed
+where the real tree is 46 and 2. A collapsed mega-menu is `ignored` in the tree,
+and Elementor tab controls get names at runtime. Treat any static figure as an
+upper bound only.
+
+Measured with the real tree: 0-2 unnamed controls per site, and two sites at
+zero. Nearly all of it is unlabelled `<select>` dropdowns surfacing as unnamed
+`combobox` nodes, plus the odd logo link. CLS is 0.000 to 0.003 across the
+board. A theme-level fix of an hour, not a project. llms.txt is present and
+passing on 9 of 10 (AIOSEO generates it); automechanicschools is the exception
+at 404.
 
 ### approval-gate vs Skill 12
 

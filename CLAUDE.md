@@ -37,6 +37,11 @@ that apply across all of them.
   myths, including that llms.txt is required.
 - `seo-strategist-agent/` — the strategy layer above content and links. Its
   `methodology.md` is the important half.
+- `grow-search-visibility/` — added 2026-08-26. Audit a site and build a plan
+  for rankings, AI citations and referral traffic, treating those as related
+  but distinct outcomes. Read it before any "improve topical authority" work.
+  See the section below: one of its rules cuts against how this portfolio is
+  built, and two of its methods are directly useful.
 
 ### The Stewart Vickers set ("SEO agency in a box")
 
@@ -123,6 +128,83 @@ zero. Nearly all of it is unlabelled `<select>` dropdowns surfacing as unnamed
 board. A theme-level fix of an hour, not a project. llms.txt is present and
 passing on 9 of 10 (AIOSEO generates it); automechanicschools is the exception
 at 404.
+
+### grow-search-visibility
+
+Three of its rules change what we do. One of them is uncomfortable.
+
+**The uncomfortable one.** It rejects "near-duplicate query permutations" and
+"scaled low-value publishing", and says plainly: consolidate phrasings one
+strong page can satisfy, do not publish one thin page per keyword variation.
+A portfolio of 62 sites running state pages and city pages off a shared
+template is the shape it is describing. automechanicschools quoting state
+projections on a city page was exactly that, and the fix was to make the page
+carry something true of the city rather than to delete it.
+
+The reading that follows is not "stop building pages". It is that adding
+another near-identical page is now the option to justify, not the default, and
+that effort goes into making existing pages independently worth citing. That is
+the same conclusion the revenue data reached from the other direction: 72% of
+our traffic sits on the three worst-monetising sites, so more of the same
+traffic is not the lever.
+
+**Citation vacuums, as the method for choosing work.** Instead of "improve
+topical authority", find clusters where the existing answers are weak, the
+value is real, and we have a right to win. That is a searchable definition and
+it beats a vague one. It also gives the four high-\$/click sites a concrete
+starting point rather than "write more".
+
+**Measurement discipline that matches what our own data already taught us.**
+A fixed, versioned prompt battery with engine, date, locale and model recorded,
+repeated because outputs vary, compared query-by-query rather than as a blended
+average. Staged rollouts and matched page groups over before-and-after. That is
+the control-group lesson (+707% turned out to be seasonality) written down as a
+method, and `aio_citations.py` should be brought up to it.
+
+**The CTR baseline, because I got this wrong once.** I called our 1.0% CTR at
+positions 4-10 "not a ranking problem, normal is 5-12%". Adrian challenged it:
+CTR has fallen with AI Overviews. He is right and the 5-12% figure is pre-AIO
+folklore. The current numbers:
+
+- 2026 organic CTR on SERPs with no other elements (First Page Sage): pos 4
+  4.8%, pos 5 3.4%, pos 6 2.9%, pos 7 2.0%, pos 8 1.4%, pos 9 1.2%, pos 10
+  1.0%. Average across 4-10 is about 2.4%, not 5-12%.
+- Ahrefs, 300k keywords, Dec 2023 against Dec 2025: AI Overviews cut CTR by
+  58% at position 1, 38.8% at 4, 32.6% at 5, and 19-30% at 6-10. That is a
+  RELATIVE cut, not an absolute floor, which is the distinction that matters.
+
+2.4% reduced by roughly 30% predicts about 1.7% at positions 4-10 on
+AIO-affected SERPs. Our portfolio measures 1.04-1.25%. We are slightly below
+what the published data predicts, not an order of magnitude below it.
+
+So the benchmark to compare against is ~1.7%, and our own portfolio figure by
+report_date is the better control still. Do not quote a pre-2024 CTR curve.
+
+**What that changes.** "These queries are structurally zero-click, abandon
+them" was too strong. 8 of 8 sampled queries carry an AI Overview, and 0 of 98
+recorded AIO citations are ours: the citations go to .edu institutions, JRCERT,
+and YouTube (11 of 98, the single most-cited domain). The traffic is being
+intercepted, not extinguished, and the response is to become the cited source.
+The most-cited domain being YouTube is the strongest argument yet for the
+careerspy channel.
+
+**Two rules to hold us to.** Never guarantee ranking, indexing, citation,
+traffic or revenue — every agenda value is a projection and should read as one.
+And no false precision: use High/Medium/Low when the inputs are weak. The
+\$600 on "get traffic to the sites that already monetise" rests on per-click
+rates drawn from one to seven clicks, and by this rule that is a High, not a
+number.
+
+**One caution.** It says not to treat third-party domain-authority scores as
+search-engine metrics. Our own strategist rule uses the lowest DR in the top 5
+as "the bar to clear". That is a heuristic for how contested a SERP is, not a
+metric Google publishes, and it should be described that way.
+
+Packaging faults found on first read are written up in
+`~/orchestrator/proposed/grow-search-visibility-packaging.md`: two files have
+each other's contents, every internal link points at a `references/` directory
+that does not exist, and the Gold IRA study the skill cites is not in the
+directory at all.
 
 ### approval-gate vs Skill 12
 

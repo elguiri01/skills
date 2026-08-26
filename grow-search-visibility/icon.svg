@@ -1,0 +1,14 @@
+interface:
+  display_name: Grow Search Visibility
+  short_description: Build durable SEO and AI search visibility
+  default_prompt: Use $grow-search-visibility to audit my website and create a prioritized
+    SEO and AI citation strategy.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -42,6 +42,11 @@ that apply across all of them.
   but distinct outcomes. Read it before any "improve topical authority" work.
   See the section below: one of its rules cuts against how this portfolio is
   built, and two of its methods are directly useful.
+- `droplet-tmux/` added 2026-09-17. tmux wrapper so a dropped SSH connection
+  stops killing a Claude Code session mid-turn. `cc <dir>` attaches or creates
+  one session per project on an isolated tmux server, leaving any existing
+  tmux setup untouched. Not for batch work; that stays in the orchestrator
+  service.
 
 ### The Stewart Vickers set ("SEO agency in a box")
 

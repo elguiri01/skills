@@ -20,15 +20,16 @@ Two files:
     cp ~/skills/droplet-tmux/ccs ~/bin/ccs
     chmod +x ~/bin/ccs
 
-If `~/bin` is not already on PATH, add to `~/.bashrc`:
+Put `~/bin` on PATH. Do this in `~/.bashrc`, not `~/.profile`:
 
-    export PATH="$HOME/bin:$PATH"
+    echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+    source ~/.bashrc
 
-Ubuntu's stock `~/.profile` adds `~/bin` on its own, but only if the directory
-already exists when you log in. Creating it during this install is too late
-for the shell you are standing in, so export it once by hand as well:
-
-    export PATH="$HOME/bin:$PATH"
+Ubuntu's stock `~/.profile` does add `~/bin`, and it is not enough. It runs
+for login shells only, and only if the directory already exists at login.
+VS Code's integrated terminal over Remote SSH starts a non-login shell, which
+reads `~/.bashrc` and skips `~/.profile` entirely, so `ccs` goes missing in
+exactly the terminal you work in. `~/.bashrc` covers every interactive shell.
 
 That puts `~/bin` ahead of `/usr/bin`, so anything in it shadows a system
 command of the same name. Confirm `ccs` resolves to your copy and has not

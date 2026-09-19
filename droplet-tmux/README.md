@@ -80,9 +80,15 @@ every session recorded at `/home/adrian`, `/home/adrian/clients` and
 `/home/adrian/ideas`, and none at `/home/adrian/orchestrator`.
 
 Beware that `~/.claude/projects/<slugified-cwd>/` holding `.jsonl` files is
-not evidence of conversation history. On this droplet that directory for
-`~/orchestrator` holds 137MB of files written by something else, in a
-different schema, and Claude correctly ignores them.
+not evidence of conversation history. That directory also holds sidecars that
+are not transcripts: file-operation checkpoints for `/rewind`, and session
+titles. On this droplet the `~/orchestrator` directory is 2512 files and
+137MB of exactly those, with no transcript among them, because conversations
+age out on `cleanupPeriodDays` and the sidecars do not. So the files pile up
+while `--resume` correctly reports nothing to resume.
+
+A transcript line carries `message`, `cwd`, `version` and `parentUuid`. If
+those keys are absent, the file is not a conversation.
 
 ## Isolation
 

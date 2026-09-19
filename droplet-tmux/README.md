@@ -71,6 +71,18 @@ A new session starts fresh unless you ask for `-c` or `-r`. `-c` passes
 found to continue" when Claude has no history it will resume for that
 directory.
 
+Claude keys conversation history to the exact working directory, so `ccs ~`
+and `ccs ~/orchestrator` are different projects with separate history and
+neither can continue the other's. Pick the one you actually work from. On this
+droplet that is `~`, not `~/orchestrator`: `claude --resume` with Ctrl+A shows
+every session recorded at `/home/adrian`, `/home/adrian/clients` and
+`/home/adrian/ideas`, and none at `/home/adrian/orchestrator`.
+
+Beware that `~/.claude/projects/<slugified-cwd>/` holding `.jsonl` files is
+not evidence of conversation history. On this droplet that directory for
+`~/orchestrator` holds 137MB of files written by something else, in a
+different schema, and Claude correctly ignores them.
+
 ## Isolation
 
 `ccs` runs on its own tmux server (`tmux -L claude`), so it cannot disturb any

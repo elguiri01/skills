@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# cc - attach or create a tmux session running Claude Code for a project.
+# ccs - attach or create a tmux session running Claude Code for a project.
 #
-#   cc                  session for $PWD, continuing its last conversation
-#   cc ~/orchestrator   session for that directory
-#   cc -r [dir]         start with the resume picker instead of --continue
-#   cc -n [dir]         start a fresh conversation, ignoring history
-#   cc -l               list the Claude tmux sessions
+#   ccs                  session for $PWD, continuing its last conversation
+#   ccs ~/orchestrator   session for that directory
+#   ccs -r [dir]         start with the resume picker instead of --continue
+#   ccs -n [dir]         start a fresh conversation, ignoring history
+#   ccs -l               list the Claude tmux sessions
 #
 # An existing session is attached as it stands; -r and -n only affect how a
 # NEW session starts. The point of the wrapper is that a dropped SSH
@@ -13,16 +13,18 @@
 #
 # Runs on a dedicated tmux server (-L claude), so it never disturbs other
 # tmux sessions. To reach them by hand: tmux -L claude ls
+#
+# Named ccs and not cc, because cc is the C compiler.
 
 set -euo pipefail
 
-SOCKET="${CC_TMUX_SOCKET:-claude}"
-CONF="${CC_TMUX_CONF:-$HOME/.config/tmux/claude.conf}"
-CLAUDE_BIN="${CC_CLAUDE_BIN:-claude}"
+SOCKET="${CCS_TMUX_SOCKET:-claude}"
+CONF="${CCS_TMUX_CONF:-$HOME/.config/tmux/claude.conf}"
+CLAUDE_BIN="${CCS_CLAUDE_BIN:-claude}"
 
 tm() { tmux -L "$SOCKET" -f "$CONF" "$@"; }
 
-usage() { sed -n '2,16p' "$0" | sed 's/^#\( \|$\)//'; }
+usage() { sed -n '2,17p' "$0" | sed 's/^#\( \|$\)//'; }
 
 mode=continue
 while [ $# -gt 0 ]; do
@@ -32,18 +34,18 @@ while [ $# -gt 0 ]; do
     -l|--list)   tm list-sessions 2>/dev/null || echo "no Claude sessions running"; exit 0 ;;
     -h|--help)   usage; exit 0 ;;
     --)          shift; break ;;
-    -*)          echo "cc: unknown option: $1" >&2; exit 2 ;;
+    -*)          echo "ccs: unknown option: $1" >&2; exit 2 ;;
     *)           break ;;
   esac
 done
 
-[ -f "$CONF" ] || { echo "cc: config not found at $CONF (see droplet-tmux/README.md)" >&2; exit 1; }
+[ -f "$CONF" ] || { echo "ccs: config not found at $CONF (see droplet-tmux/README.md)" >&2; exit 1; }
 
 dir="${1:-$PWD}"
-[ -d "$dir" ] || { echo "cc: no such directory: $dir" >&2; exit 1; }
+[ -d "$dir" ] || { echo "ccs: no such directory: $dir" >&2; exit 1; }
 dir="$(cd "$dir" && pwd -P)"
 
-name="cc-$(basename "$dir" | tr -c 'A-Za-z0-9_' '-' | sed 's/-*$//')"
+name="ccs-$(basename "$dir" | tr -c 'A-Za-z0-9_' '-' | sed 's/-*$//')"
 
 # Attach to the session, switching in place if we are already on this server.
 attach() {
@@ -54,20 +56,19 @@ attach() {
       tm switch-client -t "=$name"
       return
     fi
-    echo "cc: already inside a different tmux server. Detach first, or run:" >&2
+    echo "ccs: already inside a different tmux server. Detach first, or run:" >&2
     echo "    tmux -L $SOCKET attach -t $name" >&2
     return 1
   fi
   if [ ! -t 1 ]; then
-    echo "cc: session '$name' is running (no tty here, not attaching)"
+    echo "ccs: session '$name' is running (no tty here, not attaching)"
     return 0
   fi
   tm attach-session -t "=$name"
 }
 
 if tm has-session -t "=$name" 2>/dev/null; then
-  exec_note="attaching to existing session '$name'"
-  [ -t 1 ] || echo "$exec_note"
+  [ -t 1 ] || echo "ccs: attaching to existing session '$name'"
   attach
   exit $?
 fi

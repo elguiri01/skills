@@ -43,7 +43,7 @@ that apply across all of them.
   See the section below: one of its rules cuts against how this portfolio is
   built, and two of its methods are directly useful.
 - `droplet-tmux/` added 2026-09-17. tmux wrapper so a dropped SSH connection
-  stops killing a Claude Code session mid-turn. `cc <dir>` attaches or creates
+  stops killing a Claude Code session mid-turn. `ccs <dir>` attaches or creates
   one session per project on an isolated tmux server, leaving any existing
   tmux setup untouched. Not for batch work; that stays in the orchestrator
   service.

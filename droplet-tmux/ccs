@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 # ccs - attach or create a tmux session running Claude Code for a project.
 #
-#   ccs                  session for $PWD, continuing its last conversation
+#   ccs                  session for $PWD, new conversation
 #   ccs ~/orchestrator   session for that directory
-#   ccs -r [dir]         start with the resume picker instead of --continue
-#   ccs -n [dir]         start a fresh conversation, ignoring history
+#   ccs -c [dir]         new session, continue that directory's last conversation
+#   ccs -r [dir]         new session, open the resume picker
 #   ccs -l               list the Claude tmux sessions
 #
-# An existing session is attached as it stands; -r and -n only affect how a
-# NEW session starts. The point of the wrapper is that a dropped SSH
-# connection leaves the session and its in-flight turn running on the droplet.
+# Attaching to an existing session is the common case: a dropped SSH
+# connection leaves the session and its in-flight turn running on the
+# droplet, so you rejoin the live process and -c does not come into it.
+# -c and -r only affect how a NEW session starts.
 #
 # Runs on a dedicated tmux server (-L claude), so it never disturbs other
 # tmux sessions. To reach them by hand: tmux -L claude ls
@@ -26,11 +27,11 @@ tm() { tmux -L "$SOCKET" -f "$CONF" "$@"; }
 
 usage() { sed -n '2,17p' "$0" | sed 's/^#\( \|$\)//'; }
 
-mode=continue
+mode=new
 while [ $# -gt 0 ]; do
   case "$1" in
-    -r|--resume) mode=resume; shift ;;
-    -n|--new)    mode=new;    shift ;;
+    -c|--continue) mode=continue; shift ;;
+    -r|--resume)   mode=resume;   shift ;;
     -l|--list)   tm list-sessions 2>/dev/null || echo "no Claude sessions running"; exit 0 ;;
     -h|--help)   usage; exit 0 ;;
     --)          shift; break ;;
@@ -73,20 +74,13 @@ if tm has-session -t "=$name" 2>/dev/null; then
   exit $?
 fi
 
-# Claude Code keys its transcripts by working directory, slugified.
-# --continue errors out when the directory has no history, so check first
-# and fall back to a fresh conversation.
+# A new session starts fresh unless asked otherwise. -c can still fail with
+# "No conversation found to continue"; -r opens the picker either way and is
+# the safer choice when you are not sure what history a directory has.
 case "$mode" in
-  continue)
-    slug="$(printf '%s' "$dir" | sed 's/[^A-Za-z0-9]/-/g')"
-    if compgen -G "$HOME/.claude/projects/$slug/*.jsonl" >/dev/null 2>&1; then
-      start="$CLAUDE_BIN --continue"
-    else
-      start="$CLAUDE_BIN"
-    fi
-    ;;
-  resume) start="$CLAUDE_BIN --resume" ;;
-  new)    start="$CLAUDE_BIN" ;;
+  continue) start="$CLAUDE_BIN --continue" ;;
+  resume)   start="$CLAUDE_BIN --resume" ;;
+  new)      start="$CLAUDE_BIN" ;;
 esac
 
 # Capture the pane id, so send-keys does not depend on window/pane indexes.

@@ -48,22 +48,28 @@ and change `default-terminal` to `screen-256color`:
 
     ccs                      # session for the current directory
     ccs ~/orchestrator       # session for the orchestrator project
+    ccs -c ~/orchestrator    # new session, continue the last conversation
     ccs -r ~/orchestrator    # new session, opens the --resume picker
-    ccs -n ~/orchestrator    # new session, fresh conversation
     ccs -l                   # list running Claude sessions
 
 Sessions are named after the directory: `ccs-orchestrator`, `ccs-skills`.
 Running `ccs` against a directory that already has a session attaches to it as
-it
-stands, so it is safe to run repeatedly, and `-r` and `-n` only affect how a
-new session starts.
+it stands, so it is safe to run repeatedly, and `-c` and `-r` only affect how
+a new session starts.
+
+Attaching is the case that matters. After a dropped connection the session is
+still running, so you rejoin the live process mid-turn and no flag is
+involved. `-c` and `-r` are for when the session itself is gone: a reboot, or
+you exited it. `-r` opens the picker whether or not the directory has history,
+so it is the safer of the two when you are not sure.
 
 Detach with `Ctrl-b d`. The session, and anything Claude is in the middle of,
 keeps running. Reattach with the same `ccs` command from a new SSH login.
 
-A directory with no prior conversation starts fresh, because `--continue`
-errors out with nothing to continue. The check reads
-`~/.claude/projects/<slugified-cwd>/` for transcripts.
+A new session starts fresh unless you ask for `-c` or `-r`. `-c` passes
+`--continue` straight through, so it can still come back with "No conversation
+found to continue" when Claude has no history it will resume for that
+directory.
 
 ## Isolation
 
@@ -92,7 +98,7 @@ sessions. Use `ccs -l`, or:
 path, the server socket and the `claude` binary. `CCS_CLAUDE_BIN` exists so
 the wrapper can be exercised without launching a real session:
 
-    CCS_CLAUDE_BIN='echo FAKE' ccs -n /tmp && ccs -l
+    CCS_CLAUDE_BIN='echo FAKE' ccs /tmp && ccs -l
     tmux -L claude kill-session -t ccs-tmp
 
 ## Status
@@ -105,3 +111,9 @@ the droplet yet, so treat the first `ccs` there as the real test.
 
 Renamed from `cc` to `ccs` on 2026-09-19, after the first install attempt on
 the droplet ran `/usr/bin/cc` and handed back linker errors.
+
+Also on 2026-09-19: the wrapper used to sniff `~/.claude/projects/` for
+transcripts and pick `--continue` or a fresh start on that basis. It read an
+internal layout it has no business depending on, and the first real run chose
+`--continue` into a directory Claude would not resume. That check is gone.
+`-c` is explicit and the default is a fresh conversation.

@@ -24,6 +24,12 @@ If `~/bin` is not already on PATH, add to `~/.bashrc`:
 
     export PATH="$HOME/bin:$PATH"
 
+Ubuntu's stock `~/.profile` adds `~/bin` on its own, but only if the directory
+already exists when you log in. Creating it during this install is too late
+for the shell you are standing in, so export it once by hand as well:
+
+    export PATH="$HOME/bin:$PATH"
+
 That puts `~/bin` ahead of `/usr/bin`, so anything in it shadows a system
 command of the same name. Confirm `ccs` resolves to your copy and has not
 landed on top of something else:

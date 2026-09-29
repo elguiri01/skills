@@ -42,6 +42,15 @@ that apply across all of them.
   but distinct outcomes. Read it before any "improve topical authority" work.
   See the section below: one of its rules cuts against how this portfolio is
   built, and two of its methods are directly useful.
+- `listicle-placement/` — added 2026-09-29. Getting our sites INTO other
+  people's best-of lists, which is where AI engines take their recommendations
+  from (43.8% of ChatGPT's cited pages per Ahrefs, 63% of 400M citations per
+  Evertune; both the source's figures, not ours, though our own 0-of-98 AIO
+  citations point the same way). The prospecting half is genuinely useful and
+  maps onto `query_battery.py` and `aio_citations.py`. The source is a sales
+  page for a $247-$397 placement service whose pitch is "your link will always
+  be dofollow", which is a link scheme; the skill refuses that half in writing.
+  Mirror of `listicle-agent/`, which writes our own lists.
 
 ### The Stewart Vickers set ("SEO agency in a box")
 

@@ -61,6 +61,36 @@ The site must signal legitimacy and accountability.
 
 ---
 
+## The competitive gap, measured 2026-09-29
+
+Worth knowing before deciding how much of this skill to do, because it says
+where the door is open.
+
+A teardown of mastersincounseling.org, rebuilt five weeks earlier by the
+operator of esyoh and the best-resourced build we have examined in an adjacent
+niche, found a sophisticated site: 451 URLs, ~5,900 words a page, ten sources
+declared in Article schema per page, `dateModified` maintained daily. Its
+byline reads:
+
+> **Reviewed by Mastersincounseling.org Staff**
+
+No named human. No credentials. No author page. No reviewer bio. On
+mental-health-careers content, which is squarely YMYL.
+
+So the operator who has clearly thought hardest about machine-readable
+provenance has skipped human provenance entirely. Everything in this skill is
+cheap for us — the personas exist, Skill 16 specifies them, and the
+credentialed-bio formula below is a paragraph of writing per site. **This is
+the one dimension where a better-resourced competitor has left the door open,
+and it is the dimension Google's own YMYL guidance weights hardest.**
+
+Two cautions against reading it as a free win. We do not know whether his
+approach works at all; he put it at "maybe 50/50" himself, and he may have
+concluded that named authorship does not move AI citation. And a named author
+is only a signal if the credentials are real — Skill 12's no-invented-facts
+rule covers bylines, so this is only an advantage where we can stand behind the
+person.
+
 ## Implementation priority order
 
 ### Tier 1 — Do immediately (high impact, low effort)

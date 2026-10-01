@@ -126,6 +126,21 @@ Relevant types for education lead-gen sites:
 - **Article** with a real `author` — ties into Skill 16 (the persona is the
   author; the author page is the `author` entity).
 - **Organization** / **WebSite** with `sitelinks searchbox` on the homepage.
+- **`citation`** on Article — a list of `CreativeWork` objects naming the
+  sources the page is built from, each with `url`, `name` and a `publisher`
+  Organization. Added 2026-09-29 after a teardown of mastersincounseling.org,
+  which is the one thing on that site worth copying immediately: its
+  California page declares ten sources in schema, including the state
+  licensing board, the state labour department's licence profile and two state
+  health-agency PDFs. We have JRCERT programme data and BLS OEWS wired into
+  generation and declare **nothing** in schema on any site.
+
+  Why it is worth the template change: `citation` is the machine-readable
+  answer to "where did this come from", which is the question an engine that
+  quotes rather than ranks has to resolve. It is also free per page, because
+  the sources are already in the DB that generated the content. **Only cite
+  what the page actually used** — a citation list that does not match the
+  content is the same violation as invented `AggregateRating`.
 
 **Hard rule:** never mark up data that isn't visibly on the page, and never
 invent ratings/reviews. Fake `AggregateRating` or `Review` schema is a

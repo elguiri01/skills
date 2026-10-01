@@ -14,6 +14,32 @@ The pattern:
 3. Nobody has compiled it into a state-by-state format
 4. We do. We rank.
 
+**The state-agency layer, which sits below all of this**
+
+Added 2026-09-29 from a teardown of mastersincounseling.org. We source
+nationally: the accreditor's directory plus BLS OEWS by state. That site
+sources the same thing and then goes one level down, per state, and declares it
+in schema. Its California page cites the state's addiction-counsellor
+certification board, the state's consortium credential, the California
+Employment Development Department's own occupational licence profile, and two
+California Department of Health Care Services and HCAI workforce PDFs.
+
+That is the same moat this skill describes, worked one layer deeper, and the
+layer is the one competitors are least likely to assemble because it is
+different in every state. For each niche the question to add to the source
+hunt is therefore:
+
+1. **Which state body licenses or certifies this occupation**, and does it
+   publish a directory, fee schedule or CE requirement we can compile?
+2. **Does the state labour department publish an occupational licence profile
+   or wage series** separate from BLS?
+3. **Has the state health or education agency published a workforce
+   assessment** (usually a PDF, often annual, almost never scraped)?
+
+Items 2 and 3 are where the leftover `[VERIFY]` licensing-fee and CE-hour tags
+were always going to come from, so this is the same work as closing those,
+approached from the source end rather than the claim end.
+
 **The deeper moat: cross-source enrichment**
 
 Any competitor can eventually scrape a single source. What cannot easily

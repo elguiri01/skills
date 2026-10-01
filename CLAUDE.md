@@ -42,6 +42,18 @@ that apply across all of them.
   but distinct outcomes. Read it before any "improve topical authority" work.
   See the section below: one of its rules cuts against how this portfolio is
   built, and two of its methods are directly useful.
+- `bing-and-non-google-search/` — added 2026-09-29. Bing, DuckDuckGo and
+  Copilot as a channel. Measured on identical days: Bing is 18% of our search
+  clicks from 8.7% of impressions, at 2.3x Google's CTR, and is already the
+  MAJORITY source on electricalschool (60%, our best per-click domain),
+  medassisting (65%), design-training (88%) and dentalassistantedu (94%). We
+  have never optimised for it. Carries the period-matching rule that stopped
+  the first reading being 34%, the two false 100%-Bing domains that are really
+  broken GSC feeds, and the practical edge: IndexNow and URL submission have
+  no Google equivalent. ChatGPT and Copilot read Bing's index, so this is the
+  substrate under skill 22. Prompted by Bryce saying he has stopped targeting
+  Google; he is directionally right and rhetorically wrong, since Google is
+  still 82% of our clicks.
 - `listicle-placement/` — added 2026-09-29. Getting our sites INTO other
   people's best-of lists, which is where AI engines take their recommendations
   from (43.8% of ChatGPT's cited pages per Ahrefs, 63% of 400M citations per

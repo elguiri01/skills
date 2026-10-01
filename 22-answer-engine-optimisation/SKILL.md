@@ -260,6 +260,47 @@ Landwehr found it searching parked domains like `census.com` instead of
 - If your brand name has an obvious near-miss domain you do not own, that is a
   real risk worth checking rather than a theoretical one.
 
+## Fan-out as site architecture, not as keyword research
+
+Added 2026-09-29 from a teardown of mastersincounseling.org, rebuilt five weeks
+earlier by the operator of esyoh, who told us the same day that he no longer
+targets Google at all and works Bing, ChatGPT, DuckDuckGo and Copilot.
+
+Section 3 treats fan-out as research: find the sub-questions an engine
+decomposes a prompt into. That site treats them as **URLs**, and the design is
+worth copying because three of its six clusters are ones a lead-gen portfolio
+would never build by instinct:
+
+- **Comparison pages.** `counseling-vs-psychology`, `counseling-vs-social-work`,
+  `amft-vs-lmft`. A buyer prompt fans out into exactly these, and each is a
+  page rather than a paragraph inside a bigger one. We have **zero** comparison
+  pages across 62 sites, and item 60 measured what programme mismatch costs
+  when the right page does not exist.
+- **Practitioner-concern pages.** `burnout`, `boundaries`, `confidentiality`,
+  `client-rapport`. Aimed at people already in the job, who will never convert.
+  That is topical authority bought on purpose. Judge it as an authority spend,
+  not as a funnel failure, and read it against `grow-search-visibility`'s rule
+  that a new page is the option to justify: these clusters pass that test
+  because each answers a distinct question, which near-duplicate state pages
+  do not.
+- **Career and guide clusters kept separate**, splitting "what is this job"
+  from "how do I choose a programme".
+
+Two more mechanics from the same build:
+
+- **Declare provenance in schema.** `citation` on Article, naming each source
+  as a `CreativeWork` with a publisher. See Skill 15. This is the cheapest AEO
+  change available to us and we do none of it.
+- **Source one level below the national dataset.** Their California page cites
+  the California licensing board and two state health-agency PDFs, not "BLS
+  says". Skill 10 carries this as the state-agency layer.
+
+**What not to copy.** Pages of 5,855 words with 238 internal links each. The
+site is five weeks old with no traffic data visible to us, its own operator
+puts the approach at "maybe 50/50", and volume is the part of it most likely to
+be the thing that does not work. Copy what is cheap and defensible on its own
+merits.
+
 ## Order of work
 
 1. **Technical check first.** If the crawler is blocked, nothing else counts.

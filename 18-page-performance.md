@@ -225,6 +225,12 @@ New sites inherit the review automatically — targets come from
 
 ## Related skills
 
+- **`web-performance/`** — the client-site companion. Measurement epistemics
+  (five runs or an on/off control, why two instruments disagree, what
+  Lighthouse scores against what it merely diagnoses, reading LCP candidates
+  rather than LCP) and the safety rules for any change that removes or defers
+  an asset. This skill owns the automated loop and the fix mechanics; that one
+  owns proving a change worked to somebody who is paying for it.
 - **Skill 15 (Technical SEO)** — the wider technical layer. §3–§4 define the
   metrics and the field-data checks; this skill owns the automated lab loop and
   the fix mechanics.

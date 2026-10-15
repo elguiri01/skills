@@ -29,6 +29,15 @@ that apply across all of them.
 - `21` local SEO agent — GBP health, geogrids, citations. Official APIs only;
   it explicitly refuses Chrome automation of the GBP UI, which breaches ToS.
   Runs in US business hours because off-hours geogrids depress scores.
+- `web-performance/` — measuring page speed honestly and removing assets
+  safely. Pairs with Skill 18, which owns the portfolio loop; this owns the
+  epistemics and the client-facing half. Read it before quoting any
+  before-and-after number.
+- `client-content-review/` — turning a subject-matter expert's review of
+  draft content into applied changes. Capture verbatim, separate corrections
+  from preferences, Was/Now diff before sending.
+- `elementor/` and `siteground/` — platform traps, separated from the general
+  skills on purpose. Read the relevant one before optimising a site on either.
 - `agent-resilience/` — three-tier fallback (silent default / skip+flag / ask a
   human) plus a mandatory run summary. Required in every autonomous script.
   Wired into `autopilot.py`; it caught a parser fault on its first run.

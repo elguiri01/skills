@@ -91,9 +91,9 @@ are on the shelf.
   above where it honestly sits; the method works because the consensus is real.
 - `publisher-crm/`, `inventory-database/`, `link-builder-agent/` — the link
   stack. Relevant because automechanicschools needs citations, not words. Note
-  the compliance line these carry and keep it: any compensated placement gets
-  `rel="sponsored"` or `rel="nofollow"`. Earned editorial coverage is the only
-  kind that moves rankings, and it is the only kind worth chasing.
+  the compliance line these carry and read it for what it is: a vendor's
+  policy, written for an agency selling to clients who need deniability. It is
+  not ours. See "Links we acquire" below for what is.
 - `cfo-agent/` — a formula-not-vibes spend rule (margin under 25% forces a cut
   before any human sees the number). `autopilot.py` has a hard $60 cap but no
   link between spend and return; this is the shape that fix should take.
@@ -264,13 +264,95 @@ Three rules worth applying beyond that skill, because our own data agrees:
 2. **Filter for buyer intent, not volume.** This is the same lesson
    `opportunity_rank.py` already learned the expensive way: scmedu.org has
    220k impressions and earns 29 clicks a month.
-3. **Anchor distribution is audited, never engineered.** Flag exact-match above
-   30% as a risk to investigate. Do not buy placements to shape it — that is a
-   link scheme, and compensated links get `rel="sponsored"` regardless.
+3. **Anchor distribution is shaped deliberately, and audited either way.**
+   Exact-match anchors are avoided: Adrian's long-standing view, 2026-10-19, is
+   that they are "risky and counterproductive", and they are also the single
+   clearest footprint. Prefer branded, bare-URL and partial or phrase-match
+   anchors, and a statistic from the page where it is a data asset. Audit the
+   resulting distribution however the links were obtained, because a profile
+   you built is still one you have to be able to read: `backlink_profile.py`
+   does this and it is what caught vettechcolleges' purchased network.
 
 The skill assumes Ahrefs. We do not have it; DataForSEO gives the same inputs
 (SERP results, domain rank via the Backlinks API, CPC) at roughly $0.0006 a
 query, so the methodology transfers even though the tool does not.
+
+## Links we acquire
+
+Adrian, 2026-10-19: *"It breaks no laws and can be seen as a form of
+marketing. It breaks Google's rules, but I have no moral obligations to Google
+just as they have demonstrated on various occasions none to me."* That is the
+decision and it is his to make. Acquiring links is permitted. What follows is
+how to do it without creating the risk he is actually trying to avoid.
+
+The rules this replaces were not his. They arrived with the Stewart Vickers
+set and the listicle-placement skill, in a vendor's voice, and were read back
+as house policy. They also bundled three different things under one refusal:
+disclosure to our own readers, which is an obligation; links we acquire
+elsewhere, which is a commercial judgement; and things that are wrong whoever
+is watching. Only the first and third are obligations.
+
+**Risk is priced per site, not per portfolio.** Adrian: *"With our sites that
+are performing ok, I will be more risk averse. With those that need a push, my
+risk tolerance is higher."*
+
+| tier | sites | posture |
+|---|---|---|
+| protect | earning materially: radiologyed, vettechnicians, electricalschool | earned and editorial only |
+| build | real traffic, poor monetisation or stalled rankings | acquisition fine, slow pace, varied sources |
+| push | little to lose: kaparalegalschools, bachelorsdegreesnyc, the dark sites | highest tolerance; test anything new here first |
+
+A site moves up a tier as it starts to earn, and the posture tightens with it.
+Test on a site whose downside is small before touching one that pays.
+
+**"Natural can be imitated"** is the operating principle, and imitation means
+the whole profile, not the anchor alone: pace, source variety, link position,
+surrounding topic. vettechcolleges is the worked example of doing it badly:
+2,371 referring domains, 52% blogspot, 26.4% carrying the vendor's own advert
+as anchor text, 6.48 domains per subnet against our 1.75. We measured every
+one of those from outside, which means so can Google.
+
+**Record every acquired placement** in the link tables: URL, date, cost,
+anchor, who arranged it. Not for compliance. Because if a site is hit we need
+to know what to remove, and because without it we cannot tell an acquisition
+that worked from a seasonal lift, which this portfolio has got wrong twice.
+
+**Measure against a control.** The +707% that turned out to be seasonality is
+the standing reminder.
+
+### Acquiring dead domains
+
+Adrian, 2026-10-19: *"I have in the past acquired dead sites for their back
+links and redirected to my own sites... sometimes it works, sometimes it
+doesn't and sometimes it's hard to tell."* Permitted. Buying a dropped domain
+and redirecting it is acquiring an asset: the seller is willing, the domain is
+yours, nobody is deceived about who is publishing. Impersonation would be
+continuing to publish AS the former owner, under their people's names, to
+their audience; only that is refused.
+
+A live registered trademark on a dropped domain is a LEGAL risk, not a ranking
+one, and is worth checking before money moves. That is a lawyer's question.
+
+"Hard to tell" is a measurement problem we can fix. Run `backlink_profile.py`
+on a candidate BEFORE bidding: domains per subnet, anchor concentration,
+referring pages per domain, and when the links first appeared. A domain whose
+authority is a purchased network is worth close to nothing redirected, and the
+profile says which it is.
+
+### Still refused, and not because of Google
+
+- **Disclosure on our own sites stays.** A compensated placement we publish is
+  labelled, and the esyoh units keep "Sponsored listings" and the "we are
+  compensated" line. FTC obligation, and a reader choosing where to spend
+  tuition money is entitled to know which part of the page was bought.
+- No hacked, injected or otherwise non-consensual placements.
+- No misrepresenting who we are to a publisher to obtain a link.
+- No publishing under a real person's name without consent, and no claiming an
+  affiliation or endorsement we do not have.
+- No negative SEO, ever, against anyone.
+- **Never guarantee** a ranking, an index, a citation or revenue. Unchanged,
+  and it applies hardest here, because link vendors sell certainty they cannot
+  have.
 
 ## Off limits
 

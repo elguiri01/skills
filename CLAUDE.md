@@ -63,6 +63,31 @@ that apply across all of them.
   substrate under skill 22. Prompted by Bryce saying he has stopped targeting
   Google; he is directionally right and rhetorically wrong, since Google is
   still 82% of our clicks.
+- `information-gain/` — added 2026-10-29. Why a page is allowed to exist, as a
+  single testable gate: could a competitor publish a near-identical version
+  tomorrow with the same prompt and the same public inputs? Read it BEFORE
+  Skill 11, which governs how a sentence reads rather than whether the page
+  should have been written. From Lily Ray's tracking of 220+ sites pulled off
+  AI-content vendors' own case-study pages: pages climb 6-12 months, traffic
+  peaks 3-6 months later, then falls (Glenn Gabe's "Mount AI"). Provenance is
+  weak on purpose — third-party estimates, a set selected for sites vendors
+  chose to advertise, no causation claimed — so it generates a hypothesis and
+  is never quoted at a client as a statistic. This is the SECOND independent
+  source saying our state-page-plus-`/es/` architecture is the shape being
+  described; `grow-search-visibility` was the first. The distinction that
+  matters for us is NOT public versus private data: accurate salary and school
+  data is necessary, and **crossing two or more public sources to produce a
+  figure that exists in neither is information gain** (Adrian, 2026-10-29).
+  `careerspy-net-price` is the worked example, and BLS wage crossed with IPEDS
+  net price — cost against what the job pays — is the obvious unbuilt one.
+  Restating a single table is what fails the test. Carries a moat ladder from
+  cheapest to dearest: crossed sources, assembled tables, our own aggregated
+  behaviour, reader surveys, expert interviews, student quotes. Two facts
+  behind it: radiologyed publishes ARRT pass/completion/placement rates for 742
+  programmes and earns more than the next three sites combined, and
+  `jrcert_programs` holds a programme director email for 741 of 742, which is
+  an interview list nobody else has. Quotes and interviews are real, consented
+  and sourced or they are not published.
 - `listicle-placement/` — added 2026-09-29. Getting our sites INTO other
   people's best-of lists, which is where AI engines take their recommendations
   from (43.8% of ChatGPT's cited pages per Ahrefs, 63% of 400M citations per

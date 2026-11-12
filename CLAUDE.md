@@ -97,6 +97,27 @@ that apply across all of them.
   page for a $247-$397 placement service whose pitch is "your link will always
   be dofollow", which is a link scheme; the skill refuses that half in writing.
   Mirror of `listicle-agent/`, which writes our own lists.
+- `entity-markup-and-wikidata/` — added 2026-11-12. Which entities to mark up,
+  which to mention, and which belong in Wikidata. Carries `reconcile.py`, a
+  read-only triage against the live Wikidata API that sorts a concept list
+  into match, review and absent, and for an absent concept returns the
+  competing senses, which are both the `different from` statements a new item
+  needs and the input to the "not this" line on the page. Prompted by David at
+  Crecera asking whether we had a skill for this. We did not, but the Lisclare
+  engagement had already done it twice: **Q141451358** patient lift sling and
+  **Q141544523** profiling bed, created September 2026 and wired into every
+  page generator through one disambiguation module, so a single definition
+  reaches all of them. The load-bearing distinction is `sameAs` against
+  `additionalType`: a concept IS the entity, an individual product is only OF
+  that type, and getting it backwards would have merged 57 products into two.
+  Parent QIDs are required with no default, because a label match is not an
+  identity: "sling" matches a Clairo album and "chair" returns chairperson
+  before the furniture. Refuses a brand or company item, which is a deletion
+  request that taints the account that also made the useful edit. Carries a
+  corrections register of five things stated confidently and wrongly,
+  including that a nomenclature cannot be a Wikidata source and that
+  `MedicalDevice` has no `purpose` property. **No measured ranking or citation
+  effect**, and it says so rather than selling one.
 
 ### The Stewart Vickers set ("SEO agency in a box")
 

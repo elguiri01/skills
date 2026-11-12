@@ -187,22 +187,38 @@ one costs more than it returns.
    name you did not search.
 2. Use an account with a history. A new account whose first act is creating an
    item in a client's category attracts scrutiny, and deserves to.
-3. **Declare the connection, because the Terms of Use require it.** Section 4
-   of the Wikimedia Foundation Terms of Use, "Paid Contributions Without
-   Disclosure", requires you to disclose "each and any employer, client,
-   intended beneficiary and affiliation" for any contribution for which you
-   receive or expect compensation. It accepts a statement on your user page, on
-   the talk page accompanying the contribution, or in the edit summary. A user
-   page statement is the right one here, because it covers every edit without
-   cluttering any of them.
+3. **Declare the connection. Two rules apply and the narrower one governs.**
 
-   Two things to check rather than assume. The Terms of Use let a project adopt
-   an alternative disclosure policy that supplements or replaces section 4, and
-   **Wikidata has its own "Disclosure of paid editing" policy page**, which has
-   not been read as part of writing this skill. Read it before contributing: it
-   is the operative rule if it is that alternative policy. Second, agency work
-   for a client is compensated contribution whether or not anyone invoiced for
-   the edit itself, so the obligation applies to us.
+   Section 4 of the Wikimedia Foundation Terms of Use, "Paid Contributions
+   Without Disclosure", requires you to disclose "each and any employer,
+   client, intended beneficiary and affiliation" for any contribution for which
+   you receive or expect compensation, on your user page, on the talk page
+   accompanying the contribution, or in the edit summary.
+
+   **Wikidata's own policy is narrower on both counts** and it is a policy, not
+   a guideline: `Wikidata:Disclosure of paid editing`, shortcut WD:PAID, banner
+   "This page documents a Wikidata policy", read 2026-11-12. It requires "the
+   name of every organization (regardless of legal status) and individual that
+   pays the user money for contributing to Wikidata", and it names **one**
+   channel: "This disclosure can either happen via plain-text or with the
+   `{{PaidContributions}}` template on the user page." No talk page, no edit
+   summary. It does not call itself an alternative policy under section 4; it
+   says it "affirms that we expect users of Wikidata to follow the Wikimedia
+   policy on paid editing". Treat it as additive, which means: user page.
+
+   **There is no benefit test and no promotional test.** Neither rule asks
+   whether the client gains from the edit, or whether the content reads as
+   neutral. The trigger is payment for the contribution. A generic category
+   item with no brand in it, created inside a paid engagement, is still a paid
+   contribution. The neutrality of the item is a defence against deletion, not
+   against the disclosure rule.
+
+   What non-disclosure actually risks, since this is usually overstated:
+   WD:PAID does not name it as a violation in itself. Enforcement runs warning
+   then block, and the block wording is aimed at an editor who "is disruptive".
+   A clean item from an undisclosed account is a long way from that. The honest
+   summary is that the obligation is real and the exposure is small, and those
+   are two separate facts that get collapsed into one in both directions.
 4. Write the item as a document first, with every Q-number and P-number fetched
    from the API and confirmed by label. `slings/wikidata/patient-lift-sling-item.md`
    in the Lisclare repo is the worked example, down to the QuickStatements

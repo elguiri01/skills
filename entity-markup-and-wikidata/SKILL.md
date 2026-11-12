@@ -267,11 +267,30 @@ Put the controls in the input file. Two concepts you know are anchored must
 come back `MATCH`, or the script is not reading the graph and every other row
 is noise.
 
-**Courtesy.** Serial requests with a pause, one backoff retry, honours a 429.
-The Wikimedia User-Agent policy asks automated clients to identify themselves
-and offer a contact. The `CONTACT` string is a generic client name on purpose.
-Never put a personal email address in it. If a contact is wanted, use a role
-address the owner has agreed to.
+**It is slow, and the reason is not what it looks like.** Measured 12 November
+2026: the Action API returns **HTTP 429 Too Many Requests** to an
+unauthenticated client well before you would expect, and the backoff is what
+costs the minutes. Twelve concepts took the better part of ten minutes. Budget
+for that, run it once, and read the output rather than re-running it.
+
+Three consequences, all learned on the first run:
+
+- **Never run two copies at once.** They throttle each other, and the second
+  one makes the first slower. I did this by firing a latency probe at the API
+  while the script was working, got a 429 on the probe, and that is how the
+  cause was found at all.
+- Cost scales with search phrases, which is two languages times one plus the
+  synonyms. Trim the synonym list to terms you would defend, not every phrasing
+  you can imagine.
+- At scale the Query Service (SPARQL) answers a class check in one request, and
+  a logged-in client gets a higher limit. Neither is built, and neither is
+  worth building for a list of ten concepts.
+
+**Courtesy.** Serial requests with a one second pause, one backoff retry that
+honours `Retry-After`. The Wikimedia User-Agent policy asks automated clients
+to identify themselves and offer a contact. The `CONTACT` string is a generic
+client name on purpose. Never put a personal email address in it. If a contact
+is wanted, use a role address the owner has agreed to.
 
 ## Corrections register
 

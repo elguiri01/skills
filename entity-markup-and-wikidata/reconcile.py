@@ -37,11 +37,26 @@ not a match: "sling" matches a Clairo album. Naming the parents you expect is
 what turns a string match into an identity check, and refusing to default them
 is what stops this script quietly adopting a wrong QID.
 
-RATE AND COURTESY. Serial requests with a pause between them, one retry with
-backoff, and it honours a 429. The Wikimedia User-Agent policy asks automated
-clients to identify themselves and offer a contact. CONTACT below is a generic
-client name on purpose: never put a personal email address in it. If a contact
-is wanted, use a role address the owner has agreed to.
+RATE. Measured 2026-11-12, and it is the thing that will surprise you: the
+Action API returns **HTTP 429 Too Many Requests** to an unauthenticated client
+well before you expect it, and a twelve-concept run takes minutes because of
+the backoff rather than because of the work. The 429 handling here is therefore
+load-bearing, not politeness. Three consequences:
+
+  - Never run two copies at once. They throttle each other and the second one
+    makes the first one slower. This was learned by doing it.
+  - Cost is driven by the number of SEARCH phrases, which is 2 languages times
+    (1 + synonyms). Trim the synonym list to the terms you would actually
+    defend, not every phrasing you can think of.
+  - If you need this at scale, the Query Service (SPARQL) answers a class check
+    in one request instead of several, and a logged-in client gets a higher
+    limit. Neither is built here.
+
+COURTESY. Serial requests with a pause between them. The Wikimedia User-Agent
+policy asks automated clients to identify themselves and offer a contact.
+CONTACT below is a generic client name on purpose: never put a personal email
+address in it. If a contact is wanted, use a role address the owner has agreed
+to.
 """
 import argparse
 import json
@@ -54,7 +69,7 @@ import urllib.request
 
 API = "https://www.wikidata.org/w/api.php"
 CONTACT = "entity-reconcile/1.0 (read-only entity research script)"
-PAUSE = 0.4
+PAUSE = 1.0  # raised from 0.4 after measuring 429s at that rate, 2026-11-12
 VERDICTS = ("MATCH", "REVIEW", "ABSENT")
 
 
@@ -141,12 +156,18 @@ def parent_qids(entity):
 def ancestors(qid, depth, cache):
     """Parent QIDs up to `depth` hops. Depth 1 is the direct parents only.
 
-    A level at a time, batched. The first version of this walked the tree one
-    item per request and took over eight minutes on twelve concepts, which is
-    slow enough that nobody would run it twice. Each level is now a single
-    wbgetentities call, so the cost is `depth` calls per starting item rather
-    than one per node, and the shared cache collapses the repeats (every
-    device concept reaches medical device sooner or later).
+    A level at a time, batched: one wbgetentities call per level rather than
+    one per node, with the shared cache collapsing repeats (every device
+    concept reaches medical device sooner or later).
+
+    HONEST NOTE ON WHY THIS WAS CHANGED, because the first version of the
+    comment here claimed a speed-up it had not measured. The first version
+    walked one item per request. Batching cuts the call COUNT and is the right
+    shape, but it was not the reason the first run was slow. Measured
+    2026-11-12: the API returns **HTTP 429 Too Many Requests** to an
+    unauthenticated client at this rate, and the backoff is what costs the
+    minutes. Fewer requests still helps, for the same reason. Do not expect
+    this to be fast. See RATE in the module docstring.
     """
     out, frontier, seen = set(), {qid}, {qid}
     for _ in range(max(depth, 0)):

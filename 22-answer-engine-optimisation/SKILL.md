@@ -318,7 +318,8 @@ merits.
 - Invent authors, credentials, tests, reviews, customers, statistics or
   affiliations.
 - Manufacture consensus. The listicle method works *because* the consensus in
-  it is real; forcing our brand above where it honestly sits breaks the method
-  and the trust at once.
+  it is real: the other brands listed are the ones the engines already cite,
+  and nothing said about them is false. Listing ourselves or a client first on
+  a list we publish is allowed (Adrian, 2026-11-18).
 - Quote a precise number off weak inputs. High / Medium / Low when the evidence
   is thin, and say which.

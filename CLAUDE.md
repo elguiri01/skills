@@ -118,6 +118,37 @@ that apply across all of them.
   including that a nomenclature cannot be a Wikidata source and that
   `MedicalDevice` has no `purpose` property. **No measured ranking or citation
   effect**, and it says so rather than selling one.
+- `conference-intel-2026-11/` and ten skills written from it: added
+  2026-11-18. 39 talks from CMSEO 2026, Black Hat Day and LLM Mastery, read
+  for evidence rather than for tactics. Nearly every speaker sells something,
+  so the index grades each talk A to D and a D generates a hypothesis and
+  nothing else. Read `beliefs.md` before defending an existing position: the
+  set weakened five of ours. (1) Avatar-led video for AI Overviews: the man
+  who built it has 170 videos mostly at 19 to 27 views, and YouTube citation
+  is an AI Overviews fact, not a ChatGPT one (25 of 39 against 1 of 38).
+  (2) Our prompt battery is under-powered: two runs of one prompt share 40% of
+  brands, an API answer is not what the user sees, and showing a 10-point move
+  needs about 400 answers a side. (3) "Lowest DR in the top 5" is weakened as
+  a signal; DR correlates with citation at about zero and is faked to order.
+  (4) "We have no clients" is out of date. (5) Bing is a substrate, not the
+  substrate. It confirmed information gain, listicles, controls, and no
+  measured effect from schema or llms.txt. The ten:
+  `ai-answer-measurement/` (noise, sample sizes, frozen cohorts, the Door
+  Audit and its 5-point decision rule), `answer-ready-pages/` (what separated
+  cited pages from uncited, cited against named, the six passes),
+  `perception-engineering/` (brand clients: what the answer says, not whether
+  they are named), `ai-crawl-access/` (CDN defaults, Common Crawl, logs; 10 of
+  our 111 zones look closed to AI crawlers, careerspy.org among them),
+  `youtube-for-ai-overviews/` (pre-check the query, screen recording over
+  avatar, the description as the citable page), `link-and-domain-vetting/`
+  (the sellers' own account of how inventory is faked), `local-pack-2026/`
+  (questions Skill 21 on Posts and on trackers), `outbound-replies/`
+  (LoadLander and the freight kit: the reply, and the five minutes after it),
+  `client-value-reporting/` (the alternative to "hide what's bad") and
+  `agency-economics/` (pricing, profit share, what an acquirer pays for).
+  `plays.md` ranks the revenue ideas; `black-hat-ledger.md` records what was
+  demonstrated and what is refused. The edits these imply for older skills are
+  proposed, not made: `~/orchestrator/proposed/cmseo-2026-skills-index-and-edits.md`.
 
 ### The Stewart Vickers set ("SEO agency in a box")
 
@@ -133,8 +164,11 @@ are on the shelf.
   installed locally and free for classification and scoring.
 - `listicle-agent/` — the answer to our AI Visibility 0. Query the AI engines
   for a target term, find which brands they already cite, then write the piece
-  that includes that real consensus. Do NOT invent citations or force our brand
-  above where it honestly sits; the method works because the consensus is real.
+  that includes that real consensus. Do NOT invent citations; the method works
+  because the consensus is real. We or a client MAY be listed first on a list
+  we publish (Adrian, 2026-11-18, replacing "never above where it honestly
+  sits"): a publisher that lists itself first is named 38% of the time against
+  26% in Surfer's data. Competitor facts stay true and disclosure rules stay.
 - `publisher-crm/`, `inventory-database/`, `link-builder-agent/` — the link
   stack. Relevant because automechanicschools needs citations, not words. Note
   the compliance line these carry and read it for what it is: a vendor's

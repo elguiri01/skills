@@ -33,7 +33,7 @@ Traditional listicles are dead. Generic "10 best widgets" posts rank for nothing
 ## Architectural considerations
 
 - **Don't fake the AI citations.** This pattern works because the brands are real. Don't make up sources.
-- **Position your client honestly.** If your client is genuinely #2 in the consensus, write them at #2. Forcing them to #1 makes the post fake-feeling and reduces AI engine trust over time.
+- **We or the client may be listed first.** Adrian, 2026-11-18: on a listicle we publish, our own brand or a client's may take the number one slot. This replaces the earlier rule to place the client only where the consensus puts them. Surfer's data (201,534 own-brand list pages, Jul to Sep 2026, correlational) has a publisher that lists itself first named in 38% of answers against 26% otherwise. What does not change: the other brands on the list are the real ones the engines already cite, nothing said about a competitor is false, no citation, test or review is invented, and the existing disclosure rules apply (a compensated placement is labelled, and a client list says whose it is).
 - **Update quarterly.** AI consensus shifts. A listicle written last quarter is stale.
 - **Watch for "this looks AI-written" tells.** Listicles are the most-AI'd content type — easy to detect. Use voice examples, real opinions, vary structure.
 

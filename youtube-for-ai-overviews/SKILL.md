@@ -114,8 +114,10 @@ video.
   knowing before planning volume.
 - Our standing blocker is unchanged: careerspy uploads die weekly on
   `invalid_grant` until the OAuth consent screen is published out of Testing.
-- **careerspy.org itself appears closed to AI crawlers** in the 2026-11-18
-  probe. See `ai-crawl-access`. Fix that before anything else on this channel.
+- **careerspy.org refuses training crawlers** (GPTBot, ClaudeBot, Meta) while
+  serving search and assistant fetchers, per verified-bot analytics on
+  2026-11-18. It can be cited live; it is kept out of training. See
+  `ai-crawl-access`.
 
 ## Finding what works
 
@@ -137,7 +139,8 @@ if one is missing, ask; never invent a number.
 
 ## Do, in order
 
-1. Unblock careerspy.org and fix the OAuth expiry.
+1. Fix the OAuth expiry, and decide whether careerspy.org admits training
+   crawlers.
 2. Build the queue from `aio_citations.py`: queries where YouTube is cited and
    we are not.
 3. Make ten in the new format on one niche. Not a hundred.

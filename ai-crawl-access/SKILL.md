@@ -21,31 +21,62 @@ page at a different stage, and none of them shows up in Search Console.
 
 ## Our measured position, 2026-11-18
 
-`cf_ai_control.py --probe` across the account: **10 of 111 zones returned 403
-to GPTBot, ClaudeBot and PerplexityBot while serving a normal browser.**
+Two readings, and the first one was wrong. It is kept here because the way it
+was wrong is the lesson.
 
-careerspy.org, lifecoachtraining.us.com, wetrainlifecoaches.com,
-pilatesdigest.com, galenahall.co.uk, jardineriaalcobendas.com,
-piscinaslamoraleja.es, puertasgarajealcobendas.es, puertasgarajesanse.es,
-tejadosalcobendas.es.
+**The spoofed probe.** `cf_ai_control.py --probe` wears a crawler's user agent
+from the droplet. It reported 10 of 111 zones returning 403 to GPTBot,
+ClaudeBot and PerplexityBot, and prints "these cannot be cited by
+ChatGPT/Claude/Perplexity no matter what they publish". That sentence is not
+supported by its own data.
 
-Read that with the script's own warning. The probe spoofs a user agent from a
-datacentre IP and "never treat either as proof that real crawlers are being
-turned away". What it does establish is the mechanism: a 403 is Cloudflare's
-AI-crawler rule, not the origin. Confirm with `ai_fetch_probe.py`, which asks
-OpenAI's own infrastructure to fetch the page.
+**What verified crawlers actually received** (Cloudflare analytics, seven days,
+bots identified by Cloudflare from published IP ranges, via
+`verify_from_analytics()` in the same script):
 
-Three gaps this exposed:
+| zone | verified AI-bot requests | reading |
+|---|---|---|
+| careerspy.org | 403: 3,731; 200: 1,631 | **Really blocking, by category** |
+| lifecoachtraining.us.com | 200: 1,142; 403: 2 | Open |
+| pilatesdigest.com | 200: 1,199; 403: 52; 400: 85 | Open, minor refusals |
+| wetrainlifecoaches.com | 301: 168 | Redirecting, not blocking |
+| galenahall.co.uk and four Spanish local sites | 5 to 15 requests, all 200 | Open on what little traffic there is |
+| puertasgarajesanse.es | none | No evidence either way |
+| radiologyed.org, electricalschool.org (controls) | no 403s | Open |
 
-- **CCBot is not in the probe.** The probe checks three assistants' crawlers
-  and not Common Crawl's, which is the one that feeds training.
-- **The API audit is blind.** `--audit` returned 403 for every zone: the token
-  cannot read bot settings. So we cannot see the setting, only its effect.
-- **New zones are closed by default.** We found that by accident once
-  (lifecoachtraining.us.com) and it has now recurred on nine more. It belongs
-  in the Skill 01 new-site checklist.
+So one zone, not ten. And OpenAI's own fetcher (`ai_fetch_probe.py`) loaded
+careerspy.org and quoted figures from it.
 
-Changing any of it is infrastructure and needs Adrian's go (Skill 12).
+**careerspy.org by crawler**, which is the useful part:
+
+| category | crawler | status |
+|---|---|---|
+| AI Crawler (training) | meta-externalagent | 403 x 3,546 |
+| AI Crawler (training) | GPTBot | 403 x 110 |
+| AI Crawler (training) | GoogleOther | 403 x 47 |
+| AI Crawler (training) | ClaudeBot | 403 x 42, 202 x 6 |
+| AI Assistant | ChatGPT-User | 200 x 122 |
+| AI Search | Amzn-SearchBot, Applebot, Bravebot and others | 200 |
+
+Training crawlers are refused; search and assistant fetchers are served. That
+is exactly the category split Burns described, seen on our own zone. The
+consequence: careerspy.org can be retrieved and cited in a live answer today,
+and is being kept out of training data. Whether to change that is a real
+choice (see "Which crawler does what"). For a site whose whole purpose is to be
+the cited source, allowing training is the consistent answer.
+
+Rules this leaves:
+
+- **Never report a block from a spoofed user agent.** Use verified-bot
+  analytics. A zone with no AI-bot visits is "unknown", not "open" and not
+  "blocked".
+- **Report by category.** "Blocked" and "open" are both wrong for a zone that
+  serves search bots and refuses training bots.
+- **CCBot was not seen on any of these zones in the week**, so nothing here
+  says whether Common Crawl is getting in.
+- The toggle is in the Cloudflare dashboard (Security, Bots, the AI bots
+  setting). Our API token cannot read or write bot settings: `--audit` returns
+  403 for every zone. It is a security setting and Adrian's to change.
 
 ## Why it is worth an hour
 
@@ -98,7 +129,8 @@ these in about a minute; the note-taker did not run it and neither have we.
    fingerprinted datacentre IP if possible.
 7. **Do not trust a 200.** It can be a blank render or a challenge page.
 
-For our stack, steps 1, 2 and 6 are `cf_ai_control.py`, step 5 is
+For our stack, steps 1, 2 and 6 are `cf_ai_control.py` (verified-bot analytics,
+not the spoofed probe), step 5 is
 `perf_audit.py` and `agent_ready.py`, and steps 3 and 4 are not built. Common
 Crawl's index is a public API; a small `cc_presence.py` would close the gap and
 is the one new script this skill argues for.

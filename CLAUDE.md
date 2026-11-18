@@ -137,8 +137,9 @@ that apply across all of them.
   Audit and its 5-point decision rule), `answer-ready-pages/` (what separated
   cited pages from uncited, cited against named, the six passes),
   `perception-engineering/` (brand clients: what the answer says, not whether
-  they are named), `ai-crawl-access/` (CDN defaults, Common Crawl, logs; 10 of
-  our 111 zones look closed to AI crawlers, careerspy.org among them),
+  they are named), `ai-crawl-access/` (CDN defaults, Common Crawl, logs;
+  careerspy.org refuses training crawlers and serves search ones, and a
+  spoofed-agent probe that said ten zones were blocked was wrong about nine),
   `youtube-for-ai-overviews/` (pre-check the query, screen recording over
   avatar, the description as the citable page), `link-and-domain-vetting/`
   (the sellers' own account of how inventory is faked), `local-pack-2026/`
@@ -147,14 +148,17 @@ that apply across all of them.
   `client-value-reporting/` (the alternative to "hide what's bad") and
   `agency-economics/` (pricing, profit share, what an acquirer pays for).
   `plays.md` ranks the revenue ideas; `black-hat-ledger.md` records what was
-  demonstrated and what is refused. The edits these imply for older skills are
-  proposed, not made: `~/orchestrator/proposed/cmseo-2026-skills-index-and-edits.md`.
+  demonstrated and what is refused. The edits these implied for older skills
+  (08, 21, 22, 01, Bing, information-gain, the DR rule) were applied the same
+  day on Adrian's go.
 
 ### The Stewart Vickers set ("SEO agency in a box")
 
-Written for an agency with clients. We have no clients, so read them for the
-patterns rather than the workflows. Four earn their place immediately, the rest
-are on the shelf.
+Written for an agency with clients. When this was first read we had none. We
+now do (Lisclare, Crecera, the freight kit and LoadLander), so the client-facing
+ones are live reading, with two of ours taking precedence:
+`client-value-reporting/` over `client-reporting-agent/`, and
+`agency-economics/` for pricing.
 
 - `approval-gate/` — see the note below; it upgrades what Skill 12 already says.
 - `multi-llm-router/` — route each task to the cheapest model that can do it.
@@ -179,7 +183,7 @@ are on the shelf.
   link between spend and return; this is the shape that fix should take.
 - `gp-writer-agent/`, `client-reporting-agent/`, `client-wins-agent/`,
   `firefighter-agent/`, `lead-intel-suite/` — client-facing agency machinery.
-  Shelved until there are clients.
+  No longer shelved: there are clients. Read `client-value-reporting/` first.
 
 **One pattern to refuse.** `client-reporting-agent` specifies "smart display
 logic — hide what's bad, lead with what's good". That is defensible for a client
@@ -295,8 +299,11 @@ them" was too strong. 8 of 8 sampled queries carry an AI Overview, and 0 of 98
 recorded AIO citations are ours: the citations go to .edu institutions, JRCERT,
 and YouTube (11 of 98, the single most-cited domain). The traffic is being
 intercepted, not extinguished, and the response is to become the cited source.
-The most-cited domain being YouTube is the strongest argument yet for the
-careerspy channel.
+YouTube being the most-cited domain is an argument for video on the queries
+where that happens. It is not an argument for avatar video at volume, which
+the one person who built it reports mostly gets 19 to 27 views, and YouTube
+citation is an AI Overviews effect, not a ChatGPT one. See
+`youtube-for-ai-overviews/` before any careerspy work.
 
 **Two rules to hold us to.** Never guarantee ranking, indexing, citation,
 traffic or revenue — every agenda value is a projection and should read as one.
@@ -339,8 +346,12 @@ without Adrian. These are refinements to the queue, not to the gate.
 
 Three rules worth applying beyond that skill, because our own data agrees:
 
-1. **Never rank by Keyword Difficulty.** Use the lowest-DR site in the top 5 —
-   the actual bar to clear. KD is a synthetic score.
+1. **Never rank by Keyword Difficulty,** which is a synthetic score. And no
+   longer by the lowest DR in the top 5 either (changed 2026-11-18): DR
+   correlates with being cited at about zero and is raised to order. Read how
+   contested a SERP is from inclusion rate across 50 target queries and from
+   the ten or so gatekeeper sites that hold half the page (the Door Audit in
+   `ai-answer-measurement/`).
 2. **Filter for buyer intent, not volume.** This is the same lesson
    `opportunity_rank.py` already learned the expensive way: scmedu.org has
    220k impressions and earns 29 clicks a month.

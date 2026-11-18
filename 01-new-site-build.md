@@ -389,6 +389,10 @@ Run through this checklist before considering the site complete:
 - [ ] SSL working (https://)
 - [ ] Sitemap accessible at /sitemap.xml
 - [ ] Search Console verified and sitemap submitted
+- [ ] Cloudflare AI-crawler setting checked and chosen on purpose (new zones
+      can default to refusing training crawlers). Verify from verified-bot
+      analytics after a week, never from a spoofed user agent: see
+      `ai-crawl-access/`
 - [ ] AIOSEO activated and configured
 - [ ] Homepage shows correct H1 and meta description
 - [ ] Mobile layout working

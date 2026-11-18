@@ -79,6 +79,10 @@ This is the practical half, and it is the reason the channel is cheap.
   manual and rate-limited.
 - **Bing Webmaster Tools gives keyword data Google withholds**, including
   query-level impressions on a shorter lag than GSC's.
+- **An AI Performance report** (preview since February 2026): how often our
+  pages are cited in Copilot answers, and the searches the AI ran before
+  answering. That is first-party fan-out data, free, and nothing of ours reads
+  it yet. Whether it is in the Webmaster API is unverified. Added 2026-11-18.
 
 ## Why it is also the AEO channel
 
@@ -90,6 +94,14 @@ cannot cite.
 
 That connection is the strongest argument in this file, and it is the one Bryce
 was probably making when he put "bing and chatgpt" in the same breath.
+
+**Held more loosely since 2026-11-18.** Bing is a substrate, not the only one.
+The one figure offered at CMSEO is that about half the brands ChatGPT
+recommends rank in Bing's top 20, with no base. OpenAI runs its own search
+crawler and is expected to lean on Bing less; Claude's search is reported to
+run on Brave; and training data comes largely through Common Crawl. A page
+Bing has not indexed is still at a disadvantage. It is no longer safe to say
+Bing indexation is sufficient. See `ai-crawl-access/`.
 
 ## What to do, in order
 

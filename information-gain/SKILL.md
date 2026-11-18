@@ -271,6 +271,25 @@ definition what everyone else is also doing. Anything reachable by a prompt
 alone is reachable by every competitor's prompt. The moat is always something
 we went and got.
 
+## The other half: someone else has to say it too (added 2026-11-18)
+
+Three refinements from the November 2026 conference notes
+(`conference-intel-2026-11/beliefs.md`), none of which weakens the test above.
+
+- **A fact only we state is our best content and our weakest proof.** Engines
+  trust a specific when independent sources agree on it. A crossed-source
+  figure exists nowhere else by design, which is exactly why one outside page
+  needs to quote it, with its method, before it does its full work. List the
+  facts on a page that nobody else states (the sixth pass in
+  `answer-ready-pages/six-passes.md`); that list is the outreach list.
+- **Spread each unique fact across every page where it is relevant.** Do not
+  spend it on one page.
+- **Cover the basics first.** In one vendor's own experience, fully unique
+  articles did worse than pages that answered the standard questions and then
+  added what only they had. Four to seven kinds of first-hand material per
+  page was the range that held rankings in their study (correlational, no
+  link controls).
+
 ## What the AI is for
 
 The tools in that study were one prompt in, one page out. That architecture is

@@ -198,8 +198,14 @@ The check to apply to any paid placement offer:
 - GPT-4 was trained on over a million hours of YouTube transcripts.
 
 Our own data says the same thing independently: YouTube is 11 of the 98 AIO
-citations we recorded, more than any other domain. This is the strongest
-argument that exists for the careerspy channel.
+citations we recorded, more than any other domain.
+
+**Qualified 2026-11-18.** This is an AI Overviews effect. In one contest count
+video and social were 25 of 39 AI Overview citations and 1 of 38 in ChatGPT.
+It also depends on the query (trades and how-to yes; local, legal, dental no),
+and avatar-led video at volume has performed badly for the one operator who
+reported on it. Make video only for queries where the AI Overview already
+cites YouTube. `youtube-for-ai-overviews/` is the operating skill.
 
 **This is the careerspy strategy, and it is the one channel where two
 independent sources and our own measurement all point the same way.** Skill 08
@@ -249,6 +255,12 @@ method. Repeat samples, because outputs vary. Compare query by query, never as
 a blended average. Prefer staged rollouts and matched page groups to
 before-and-after. This is the control-group lesson written down: a +707%
 that turned out to be seasonality is what happens without it.
+
+**How much is enough (2026-11-18).** Two runs of one prompt share about 40% of
+brands, an API answer is not what a user sees, and showing a 10-point move
+needs about 400 answers a side. Freeze the cohort and never blend new
+questions into it. `ai-answer-measurement/` carries the figures, the sample
+sizes and the decision rule.
 
 ## 7. A known failure mode to watch for
 

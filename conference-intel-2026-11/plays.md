@@ -10,19 +10,20 @@ a YouTube channel, the tool sites.
 
 ## Do first: cheap, and the evidence is good enough
 
-### 1. Open the ten closed zones
+### 1. Decide what careerspy.org lets in
 
-`cf_ai_control.py --probe` on 2026-11-18 flagged 10 of 111 Cloudflare zones as
-returning 403 to GPTBot, ClaudeBot and PerplexityBot: careerspy.org,
-lifecoachtraining.us.com, wetrainlifecoaches.com, pilatesdigest.com,
-galenahall.co.uk, jardineriaalcobendas.com, piscinaslamoraleja.es,
-puertasgarajealcobendas.es, puertasgarajesanse.es, tejadosalcobendas.es.
+Checked properly on 2026-11-18 (Cloudflare analytics for verified bots, seven
+days): careerspy.org refuses training crawlers and serves search and assistant
+fetchers. GPTBot 110, ClaudeBot 42, GoogleOther 47 and Meta's crawler 3,546
+requests all got 403; ChatGPT-User got 200 on 122. So the site can be cited in
+a live answer and is being kept out of training data.
 
-The probe is a UA spoof from the droplet and the script itself says not to
-treat it as proof. Confirm with `ai_fetch_probe.py`, then the change is one
-Cloudflare setting per zone. That is infrastructure, so it needs Adrian's go.
-Size: Low on revenue directly, but a blocked site cannot be cited at all, and
-the Spanish local sites are client-shaped assets. Cost: an hour.
+An earlier spoofed-user-agent probe said ten zones were closed. Nine are not.
+The detail is in `ai-crawl-access/`.
+
+The change is one dashboard setting on one zone, and it is Adrian's to make.
+Size: Low. It removes a reason for the channel's site being unknown to models;
+it does not by itself earn anything. Cost: two minutes.
 
 ### 2. Answer-first rewrite on a matched test set
 

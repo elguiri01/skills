@@ -8,6 +8,13 @@ author presence outside the site.
 
 ## Strategic context
 
+> **Read `youtube-for-ai-overviews/` first (2026-11-18).** It supersedes this
+> section and Step 1. The persona-led, avatar-at-volume plan below did not
+> survive the evidence: the one operator who built it reports most videos at 19
+> to 27 views and avatar channels dropping their avatars. The format is now
+> screen recording of real data under a voice, with the presenter on screen for
+> seconds. Production mechanics from Step 2 on still apply.
+
 ### Why video matters for this portfolio
 - Google video carousels appear for "how to become X", "X salary", "X training"
   queries — exactly the keywords this portfolio targets
@@ -38,6 +45,13 @@ timestamps → Image generation (Higgsfield) → Video assembly → Upload
 ```
 
 ### Step 1 — Query selection
+
+**Changed 2026-11-18.** The first filter is now: the AI Overview for the query
+already cites a YouTube URL and does not cite us. `aio_citations.py` records
+cited domains per query, so the queue is a query on that table. If YouTube is
+not cited for a query today, a new video is unlikely to put it there. The
+criteria below are secondary.
+
 Target queries where:
 - Your affiliate sites already rank positions 5-15 (video can appear above them)
 - Google shows a video carousel in the SERP

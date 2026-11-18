@@ -48,7 +48,7 @@ Three rules that follow:
 | `ai-answer-measurement/` | Measuring or reporting anything about AI visibility. Carries the noise figures that say our battery is under-powered |
 | `answer-ready-pages/` | Writing or rewriting a page so an engine can lift from it. What moved citations, what did not, and the six-pass method |
 | `perception-engineering/` | A client with a recognisable brand. What the answer says about them, not whether they are named |
-| `ai-crawl-access/` | Whether crawlers can reach a site at all: CDN defaults, Common Crawl, logs. Includes our own 10-of-111 finding |
+| `ai-crawl-access/` | Whether crawlers can reach a site at all: CDN defaults, Common Crawl, logs. Includes what our own zones actually do |
 | `youtube-for-ai-overviews/` | Any careerspy or client video work. The avatar belief did not survive |
 | `link-and-domain-vetting/` | Before buying a link, a placement or a dead domain |
 | `local-pack-2026/` | Local clients and the directory strategy |
@@ -77,9 +77,12 @@ Files in this directory:
    ones:** PageRank, DR, domain age, schema, llms.txt, FAQ blocks, author
    boxes. Two independent vendor datasets agree. What does separate them is the
    answer in the first 50 words, intent match, facts and specifics.
-4. **Access fails silently and first.** Common Crawl's own figure is that about
-   35% of good sites block AI crawlers by accident, mostly CDN defaults. Ten of
-   our 111 Cloudflare zones look closed, careerspy.org among them.
+4. **Access fails silently and first, and by category.** Common Crawl's own
+   figure is that about 35% of good sites block AI crawlers by accident,
+   mostly CDN defaults. On our zones, verified-bot analytics show careerspy.org
+   refusing training crawlers (GPTBot, ClaudeBot, Meta) while serving search
+   and assistant fetchers. A spoofed-user-agent probe had reported ten zones
+   blocked; nine were not.
 5. **The money is moving from traffic to proof and recurring revenue.** FE
    International's top lead source is now ChatGPT while its organic traffic
    fell, and its founder calls organic-only businesses with no moat the most

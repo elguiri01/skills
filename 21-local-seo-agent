@@ -9,7 +9,7 @@ Local SEO is finicky. Google Business Profile, citation building, geogrid tracki
 
 ## What it does
 
-1. **GBP health check.** Pulls profile state (info accuracy, photo count, recent posts, Q&A, review velocity) via the official Google Business Profile API. NOT via Chrome automation of the GBP UI — Google's ToS prohibits automated UI access.
+1. **GBP health check.** Pulls profile state (info accuracy, photo count, recent posts, Q&A, review velocity) via the official Google Business Profile API. Posts are an observation only, not a task (2026-11-18): Sterling Sky measured no return from Google Posts and stopped doing them; see `local-pack-2026/`. NOT via Chrome automation of the GBP UI — Google's ToS prohibits automated UI access.
 2. **Heat-map / geogrid run.** Triggers your geogrid tool (Localo, Local Falcon, etc.) via their official APIs.
 3. **Citation audit.** Checks NAP consistency across citation sources you have official API access to (Yext, BrightLocal, etc.) or licensed data providers. Don't scrape citation sites that prohibit automation.
 4. **Review monitoring.** Flags new reviews (5★, 1★, content needing response) via the GBP API reviews endpoint.
@@ -22,6 +22,10 @@ Local SEO has more moving parts than national. Without an aggregator, account ma
 ## Important: timing
 
 Run during US business hours (or your client's business hours). Local SEO tools — and Google itself — apply different heuristics overnight. Heat-map runs at 3am can artificially depress visibility scores because real users aren't searching at that time. Schedule for ~3pm GMT (mid-day US Eastern) for US-targeted clients.
+
+## Important: what the grid no longer shows (added 2026-11-18)
+
+A geogrid is a trend line, not a reading of what customers see. In November 2026 logged-in mobile users in the US were shown ads plus an AI local block and no local pack, while trackers and incognito still returned the classic three-pack. Tracker screenshots often omit ads, and one grid tool was running up to about 20 hours late, which defeats the timing rule above. So: record when each run actually executed, spot-check on a phone, logged in, from the client's own market, and report leads from call tracking rather than rank positions. `local-pack-2026/` has the detail.
 
 ## What you provide
 
